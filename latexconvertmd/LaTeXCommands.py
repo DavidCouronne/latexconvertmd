@@ -63,7 +63,6 @@ class LaTeXCommand:
             #print(self.nom)
             passe = passe + 1
             index, avant, apres, argOptn, listeArg = self.findCommand(contenu)
-            # print("Passe"+str(passe),apres)
             contenu = avant+apres
         return contenu
 

@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{pst-plot,pst-tree,pstricks,pst-node,pst-text}
+\usepackage{pst-eucl}
+\usepackage{pstricks-add}
+\usepackage[frenchb]{babel}
+\newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
+\begin{document}
+
+\psset{unit=0.8cm,radius=2pt}
+\def\xmin {-3}   \def\xmax {11}
+\def\ymin {-3}   \def\ymax {10}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+%\psgrid[subgriddiv=1, gridlabels=0, gridcolor=lightgray]
+\Cnode*(0,0){A} \Cnode*(5,-1){B} \Cnode*(4,2){D} \Cnode*(9,1){C}
+\Cnode*(0,6){E} \Cnode*(5,5){F} \Cnode*(4,8){H} \Cnode*(9,7){G}
+\psline(E)(A)(B)(F)(E)(H)(G)(F)
+\psline(B)(C)(G)
+\psline[linestyle=dashed](A)(D)(H) \psline[linestyle=dashed](D)(C)
+\uput[dl](A){A} \uput[d](B){B} \uput[dr](C){C} \uput[ur](D){D}
+\uput[ul](E){E} \uput[u](F){F} \uput[10](G){G} \uput[u](H){H}
+\Cnode*(2,1){I} \Cnode*(7,0){J} \Cnode*(2.5,2.5){P} \Cnode*(7,6){Q}
+\uput[d](I){I} \uput[d](J){J} \uput[u](P){P} \uput[ul](Q){Q}
+\psline[linestyle=dashed](P)(Q) \psline(P)(-2,-1) \psline(Q)(11.5,9.5)
+\psline[linestyle=dashed](J)(0,1.4) \psline(J)(12,-1) \psline(0,1.4)(-3,2)
+\psset{linewidth=2pt}
+\psline[linestyle=dashed]{->}(A)(I) \psline{->}(A)(0,3) \psline{->}(A)(2.5,-0.5)
+\end{pspicture*}\end{document}

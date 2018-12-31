@@ -127,12 +127,12 @@ class Source:
         for line in self.lines:
             if in_pstricks:
                 lignes_pstricks.append(line)
-                if r"\end{pspicture}" in line:
+                if r"\end{pspicture" in line:
                     in_pstricks = False
                     pstricks.append("\n".join(lignes_pstricks))
                     lignes_pstricks = []
             else:
-                if r"\psset" in line or r"\begin{pspicture}" in line:
+                if r"\psset" in line or r"\begin{pspicture" in line:
                     in_pstricks = True
                     lignes_pstricks.append(line)
         self.pstricks = pstricks
@@ -161,24 +161,22 @@ class Source:
 
             os.rename("temp.svg", "figure"+str(nb_figure)+".svg")
             self.contenu = self.contenu.replace(
-                figure, 
-                '<img src="' + "figure"+str(nb_figure)+".svg"+
-                '" class="img-fluid" alt="Responsive image">'
-                )
+                figure,
+                '![Image](./figure'+str(nb_figure)+".svg)")
 
     def process(self):
         """Effectue les taches de conversion"""
         # Opérations sur les lignes
         self.cleanSpace()
-        self.convertEnumerate()
-        self.convertItemize()
+        # self.convertEnumerate()
+        # self.convertItemize()
         self.findPstricks()
         # Opérations sur le contenu
-
+        self.contenu = self.contenu.replace("{}", "")
         self.collapseLines()
         self.replacePstricks()
         self.cleanCommand()
-        self.cleanLayout()
         self.replaceCommand()
+        self.cleanLayout()
         self.replaceCommandSimple()
         self.replaceText()

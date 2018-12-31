@@ -7,7 +7,6 @@ import re
 from latexconvertmd import LaTeXCommands
 
 
-
 # Commandes sans argument à supprimer
 listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\hfill", 0),
@@ -30,12 +29,14 @@ listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\thispagestyle", 1),
                         LaTeXCommands.LaTeXCommand("\\pagestyle", 1),
                         LaTeXCommands.LaTeXCommand("\\hspace", 1),
                         LaTeXCommands.LaTeXCommand("\\vspace", 1),
+                        LaTeXCommands.LaTeXCommand("\\addtolength", 2),
+                        LaTeXCommands.LaTeXCommand("\\marginpar", 1)
                         ]
 
 
-
 # Remplacement de commandes avec un ou plusieurs arguments
-listeReplace = [[LaTeXCommands.LaTeXCommand("\\textbf", 1), ["<strong>", 1, "</strong>"]],
+listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
+                [LaTeXCommands.LaTeXCommand("\\textbf", 1), ["**", 1, "**"]],
                 [LaTeXCommands.LaTeXCommand("\\emph", 1), [
                     "<em>", 1, "</em>"]],
                 [LaTeXCommands.LaTeXCommand("\\rm", 1), [
@@ -53,16 +54,20 @@ listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$
                       [LaTeXCommands.LaTeXCommand(r"\\vect", 0), r"\\vec"],
                       [LaTeXCommands.LaTeXCommand(r"\\og", 0), " &laquo "],
                       [LaTeXCommands.LaTeXCommand(r"\\fg", 0), " &raquo "],
-
+                      [LaTeXCommands.LaTeXCommand(r"\\e", 0), "e"],
                       ]
 
 # Remplacement sans regex
 listeReplaceText = [["\\,\\%", "  &#37 "],
-                    ["\n\n", "<br>\n\n"],
+                    ["\\\\", "\n\n"],
+                    ["\\[", " $$ "],
+                    ["\\]", " $$ "],
+                    ["pspicture*", "pspicture"],
                     ["\\begin{center}", """<div class="text-center">\n"""],
                     ["\\end{center}", "</div>\n"],
                     ["~", ""],
                     ["\\begin{flushleft}", ""],
-                    ["\\end{flushleft}", ""]
+                    ["\\end{flushleft}", ""],
+                    ["\\strut", ""],
 
                     ]

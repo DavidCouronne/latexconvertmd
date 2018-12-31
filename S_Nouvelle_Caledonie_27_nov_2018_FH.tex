@@ -1,0 +1,454 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fourier}
+\usepackage[scaled=0.875]{helvet}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{amsmath,amssymb,makeidx}
+\usepackage{fancybox}
+\usepackage{diagbox}
+\usepackage{tabularx}
+\usepackage[normalem]{ulem}
+\usepackage{pifont}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{multicol} 
+\newcommand{\euro}{\eurologo{}}
+%Merci à Clotilde Rouchon
+%Tapuscrit : François Hache
+\usepackage{pst-all}
+\newcommand{\R}{\textbf{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\usepackage[left=3.5cm, right=3.5cm, top=3cm, bottom=3cm]{geometry}
+\newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
+\newcommand{\vectt}[1]{\overrightarrow{\,\mathstrut\text{#1}\,}}% vecteur(AB)
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+\def\Oij{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath},~\vect{k}\right)$}
+\def\Ouv{$\left(\text{O}~;~\vect{u},~\vect{v}\right)$}
+\usepackage{fancyhdr}
+\usepackage[dvips]{hyperref}
+\hypersetup{%
+pdfauthor = {APMEP},
+pdfsubject = {Baccalauréat S},
+pdftitle = {Nouvelle Calédonie - novembre 2018},
+allbordercolors = white,
+pdfstartview=FitH} 
+\usepackage[frenchb]{babel}
+\DecimalMathComma
+\usepackage[np]{numprint}
+\renewcommand{\d}{\mathrm{\,d}}%     le d de différentiation
+\newcommand{\e}{\mathrm{\,e\,}}%      le e de l'exponentielle
+\renewcommand{\i}{\mathrm{\,i\,}}%    le i des complexes
+\newcommand{\ds}{\displaystyle}
+
+\begin{document}
+
+\setlength\parindent{0mm}
+\rhead{\textbf{A. P{}. M. E. P{}.}}
+\lhead{\small Baccalauréat S}
+\lfoot{\small{Nouvelle Calédonie}}
+\rfoot{\small{27 novembre 2018}}
+\addtolength{\headheight}{\baselineskip}
+\pagestyle{fancy}
+\thispagestyle{empty}
+\marginpar{\rotatebox{90}{\textbf{A. P{}.  M. E. P{}.}}}
+\begin{center}
+{\Large \textbf{\decofourleft~Baccalauréat S -- Nouvelle Calédonie~\decofourright\\[7pt]
+27 novembre 2018}}
+\end{center}
+
+\vspace{0,25cm}
+
+\textbf{Exercice 1 \hfill 6 points}
+
+\medskip
+
+\textbf{Commun à tous les candidats}
+
+\bigskip
+
+Soient $f$ et $g$ les fonctions définies sur $]0~;~+\infty[$ par
+
+\[f(x)=\e^{-x}\quad  \text{ et }\quad g(x) = \dfrac{1}{x^2} \e^{-\frac{1}{x}}.\]
+
+On admet que $f$ et $g$ sont dérivables sur $]0~;~+\infty[$. On note $f'$ et $g'$ leurs fonctions dérivées respectives.
+
+Les représentations graphiques de $f$ et $g$ dans un repère orthogonal, nommées respectivement $\mathcal{C}_f$ et $\mathcal{C}_g$ sont données ci-dessous:
+
+\begin{center}
+\psset{xunit=1cm,yunit=7cm,comma}
+\def\xmin {-0.9}   \def\xmax {10.4}
+\def\ymin {-0.18}   \def\ymax {1.15}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+\psgrid[xunit=0.5,yunit=0.2,subgriddiv=1, gridlabels=0, gridcolor=lightgray](-2,-1)(21,6)
+\psaxes[arrowsize=3pt 3, ticksize=-2pt 2pt, Dx=1,Dy=0.2,labelFontSize=\scriptstyle](0,0)(\xmin,\ymin)(\xmax,\ymax) 
+\psaxes[ linewidth=1.5pt]{->}(0,0)(0,0)(1,1)
+\psaxes[ linewidth=1.5pt](0,0)(0,0)(1,1)
+\def\f{2.7183 x neg exp}
+\def\g{2.7183 -1 x div exp x x mul div}
+\psplot[plotpoints=1000,linecolor=red,linestyle=dashed,dash=2pt 2pt,linewidth=1.25pt]{0.01}{\xmax}{\f}
+\uput[ur](0.2,0.82){$\red \mathcal{C}_f$}
+\psplot[plotpoints=1000,linecolor=blue,linewidth=1.25pt]{0.01}{\xmax}{\g}
+\uput[r](0.2,0.17){$\blue \mathcal{C}_g$}
+\end{pspicture*}
+\end{center}
+
+\textbf{Partie A -- Conjectures graphiques}
+
+\medskip
+
+Dans chacune des questions de cette partie, aucune explication n'est demandée.
+
+\begin{enumerate}
+\item Conjecturer graphiquement une solution de l'équation $f(x)=g(x)$ sur $]0~;~+\infty[$.
+\item Conjecturer graphiquement une solution de l'équation $g'(x)=0$ sur $]0~;~+\infty[$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B -- Étude de la fonction \boldmath{$g$}}
+
+\medskip
+
+\begin{enumerate}
+\item Calculer la limite de $g(x)$ quand $x$ tend vers $+\infty$.
+\item On admet que la fonction $g$ est strictement positive sur $]0~;~+\infty[$.
+
+Soit $h$ la fonction définie sur $]0~;~+\infty[$ par $h(x)=\ln\left ( g(x) \strut\right )$.
+
+\begin{enumerate}
+\item Démontrer que, pour tout nombre réel $x$ strictement positif,
+
+\[h(x)= \dfrac{-1-2x\ln x}{x}.\]
+\item Calculer la limite de $h(x)$ quand $x$ tend vers 0.
+\item En déduire la limite de $g(x)$ quand $x$ tend vers 0.
+\end{enumerate}
+
+\item Démontrer que, pour tout nombre réel $x$ strictement positif,
+
+\[g'(x)= \dfrac{\e^{-\frac{1}{x}}\left (1-2x \strut\right )}{x^4}.\]
+
+\item En déduire les variations de la fonction $g$ sur $]0~;~+\infty[$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C -- Aire des deux domaines compris entre les courbes \boldmath{$\mathcal{C}_f$} et \boldmath{$\mathcal{C}_g$}}
+
+\medskip 
+
+\begin{enumerate}
+\item Démontrer que la point A de coordonnées $\left (1~;~\e^{-1}\strut\right )$ est un point d'intersection de $\mathcal{C}_f$ et $\mathcal{C}_g$.
+
+\smallskip
+
+On admet que ce point est l'unique point d'intersection de $\mathcal{C}_f$ et $\mathcal{C}_g$, et que $\mathcal{C}_f$ est au dessus de $\mathcal{C}_g$ sur l'intervalle $]0~;~1[$ et en dessous sur l'intervalle $]1~;~+\infty[$.
+
+\item Soient $a$ et $b$ deux réels strictement positifs. Démontrer que
+
+\[\ds\int_{a}^{b} \left ( f(x)-g(x)\strut\right ) \d x = \e^{-a} + \e^{-\frac{1}{a}} - \e^{-b} - \e^{-\frac{1}{b}}.\]
+
+\item Démontrer que
+
+\[\ds\lim_{a\to 0} \ds\int_{a}^{1} \left ( f(x)-g(x)\strut\right ) \d x =1-2\e^{-1}.\]
+
+\item On admet que
+
+\[\ds\lim_{a\to 0} \ds\int_{a}^{1} \left ( f(x)-g(x)\strut\right ) \d x =\ds\lim_{b\to +\infty} \ds\int_{1}^{b} \left ( g(x)-f(x)\strut\right ) \d x .\]
+
+Interpréter graphiquement cette égalité.
+
+\end{enumerate}
+
+\vspace{0,25cm}
+
+\textbf{Exercice 2 \hfill 3 points}
+
+\medskip
+
+\textbf{Commun à tous les candidats}
+
+\bigskip
+
+Une épreuve de culture générale consiste en un questionnaire à choix multiple (QCM) de vingt questions. Pour chacune d'entre elles, le sujet propose quatre réponses possibles, dont une seule est correcte. À chaque question, le candidat ou la candidate doit nécessairement choisir une seule réponse. Cette personne gagne un point par réponse correcte et ne perd auxun point si sa réponse est fausse.
+
+\medskip
+
+\begin{list}{\textbullet}{On considère trois candidats:}
+\item Anselme répond complètement au hasard à chacune des vingt questions.
+
+Autrement dit, pour chacune des questions, la probabilité qu'il réponde correctement est égale à $\dfrac{1}{4}$;
+\item Barbara est un peu mieux préparée. On considère que pour chacune des vingt questions, la probabilité qu'elle réponde correctement est de $\dfrac{1}{2}$;
+\item Camille fait encore mieux: pour chacune des questions, la probabilité qu'elle réponde correctement est de $\dfrac{2}{3}$.
+\end{list}
+
+\medskip
+
+\begin{enumerate}
+\item On note $X$, $Y$ et $Z$ les variables aléatoires égales aux notes respectivement obtenues par Anselme, Barbara et Camille.
+
+\begin{enumerate}
+\item Quelle est la loi de probabilité suivie par la variable aléatoire $X$? Justifier.
+\item À l'aide de la calculatrice, donner l'arrondi au millième de la probabilité $P(X \geqslant 10)$.
+\end{enumerate}
+\end{enumerate}
+
+Dans la suite, on admettra que $P(Y\geqslant 10) \approx 0,588$ et $P(Z\geqslant 10)\approx 0,962$.
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item On choisit au hasard la copie d'un de ces trois candidats.
+
+On note $A$, $B$, $C$ et $M$ les évènements:
+
+\setlength\parindent{15mm}
+\begin{itemize}
+\item[$\bullet~~$] $A$: \og la copie choisie est celle d'Anselme \fg{};
+\item[$\bullet~~$] $B$: \og la copie choisie est celle de Barbara \fg{};
+\item[$\bullet~~$] $C$: \og la copie choisie est celle de Camille \fg{};
+\item[$\bullet~~$] $M$: \og la copie choisie obtient une note supérieure ou égale à 10 \fg{}. 
+\end{itemize}
+\setlength\parindent{0mm}
+
+\smallskip
+
+On constate, après l'avoir corrigée, que la copie choisie obtient une note supérieure ou égale à 10 sur 20.
+
+\smallskip
+
+Quelle est la probabilité qu'il s'agisse de la copie de Barbara?
+
+On donnera l'arrondi au millième de cette probabilité.
+\end{enumerate}
+
+\vspace{0,25cm}
+
+\textbf{Exercice 3 \hfill 6 points}
+
+\medskip
+
+\textbf{Commun à tous les candidats}
+
+\bigskip
+
+Soit ABCDEFGH le cube représenté ci-dessous.
+
+\begin{list}{\textbullet}{On considère:}
+\item I et J les milieux respectifs des segments [AD] et [BC];
+\item P le centre de la face ABFE, c'est-à-dire l'intersection des diagonales (AF) et (BE);
+\item Q le milieu du segment [FG].
+\end{list}
+
+
+\begin{center}
+\psset{unit=0.8cm,radius=2pt}
+\def\xmin {-3}   \def\xmax {11}
+\def\ymin {-3}   \def\ymax {10}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+%\psgrid[subgriddiv=1, gridlabels=0, gridcolor=lightgray] 
+\Cnode*(0,0){A} \Cnode*(5,-1){B} \Cnode*(4,2){D} \Cnode*(9,1){C}
+\Cnode*(0,6){E} \Cnode*(5,5){F} \Cnode*(4,8){H} \Cnode*(9,7){G}
+\psline(E)(A)(B)(F)(E)(H)(G)(F)
+\psline(B)(C)(G)
+\psline[linestyle=dashed](A)(D)(H) \psline[linestyle=dashed](D)(C)
+\uput[dl](A){A} \uput[d](B){B} \uput[dr](C){C} \uput[ur](D){D}
+\uput[ul](E){E} \uput[u](F){F} \uput[10](G){G} \uput[u](H){H}
+\Cnode*(2,1){I} \Cnode*(7,0){J} \Cnode*(2.5,2.5){P} \Cnode*(7,6){Q}
+\uput[d](I){I} \uput[d](J){J} \uput[u](P){P} \uput[ul](Q){Q}
+\psline[linestyle=dashed](P)(Q) \psline(P)(-2,-1) \psline(Q)(11.5,9.5)
+\psline[linestyle=dashed](J)(0,1.4) \psline(J)(12,-1) \psline(0,1.4)(-3,2)
+\psset{linewidth=2pt}
+\psline[linestyle=dashed]{->}(A)(I) \psline{->}(A)(0,3) \psline{->}(A)(2.5,-0.5)
+\end{pspicture*}
+\end{center}
+
+On se place dans le repère orthonormé $\left ( \text{A}~;~\frac{1}{2}\vectt{AB}\;,\;\frac{1}{2}\vectt{AD}\;,\;\frac{1}{2}\vectt{AE}\right )$.
+
+Dans tout l'exercice, on pourra utiliser les coordonnées des points de la figure sans les justifier.
+
+\smallskip
+
+On admet qu'une représentation paramétrique de la droite (IJ) est
+
+\[\left \lbrace
+\begin{array}{l !{=} l}
+x& r\\
+y & 1\\
+z & 0\\
+\end{array}
+\right . , \quad r\in\R\]
+
+\begin{enumerate}
+\item Vérifier qu'une représentation paramétrique de la droite (PQ) est
+
+\[\left \lbrace
+\begin{array}{l !{=} r}
+x& 1+t\\
+y & t \\
+z & 1+t\\
+\end{array}
+\right . ,\quad t\in\R\]
+
+\end{enumerate}
+
+Soient $t$ un nombre réel et M\,$(1+t~;~t~;~1+t)$ le point de la droite (PQ) de paramètre $t$.
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item 
+\begin{enumerate}
+\item On admet qu'il existe un unique point K appartenant à la droite (IJ) tel que (MK) soit orthogonale à (IJ).
+
+Démontrer que les coordonnées de ce point K sont $(1+t~;~1~;~0)$.
+\item En déduire que $\text{MK} = \ds\sqrt{2+2t^2}$.
+\end{enumerate}
+
+\item
+	\begin{enumerate}
+		\item Vérifier que $y-z=0$ est une équation cartésienne du plan (HGB).
+		\item On admet qu'il existe un unique point L appartenant au plan (HGB) tel que (ML) soit orthogonale à (HGB).
+
+\smallskip
+
+Vérifier que les coordonnées de ce  point L sont $\left (1+t~;~\dfrac{1}{2}+t~;~\dfrac{1}{2}+t\right )$.
+		\item En déduire que la distance ML est indépendante de $t$.
+	\end{enumerate}
+\item Existe-t-il une valeur de $t$ pour laquelle la distance MK est égale à la distance ML?
+\end{enumerate}
+
+\vspace{0,25cm}
+
+\textbf{Exercice 4 \hfill 5 points}
+
+\medskip
+
+\textbf{Candidats n'ayant pas suivi l'enseignement de spécialité}
+
+\bigskip
+
+On définit la suite de nombres complexes $(z_n)$ de la manière suivante: $z_0=1$ et, pour tout entier naturel $n$,
+
+\[z_{n+1} = \dfrac{1}{3} z_{n} + \dfrac{2}{3}\i.\]
+
+On se place dans un plan muni d'un repère orthonormé direct \Ouv.
+
+Pour tout entier naturel $n$, on note A$_{n}$ le point du plan d'affixe $z_n$.
+
+Pour tout entier naturel $n$, on pose $u_n=z_n-\i$ et on note B$_n$ le point d'affixe $u_n$.
+
+On note C le point d'affixe $\i$.
+
+\begin{enumerate}
+\item Exprimer $u_{n+1}$ en fonction de $u_n$, pour tout entier naturel $n$.
+\item Démontrer que,  pour tout entier naturel $n$,
+
+\[u_n=\left (\dfrac{1}{3}\right )^{n} \left (1-\i\right ).\]
+
+\item 
+\begin{enumerate}
+\item Pour tout entier naturel $n$, calculer, en fonction de $n$, le module de $u_n$.
+\item Démontrer que
+
+\[\lim_{n\to +\infty} \left |z_n-\i \strut\right |=0.\]
+\item Quelle interprétation géométrique peut-on donner de ce résultat?
+\end{enumerate}
+
+\item 
+\begin{enumerate}
+\item Soit $n$ un entier naturel. déterminer un argument de $u_n$.
+\item Démontrer que, lorsque $n$ décrit l'ensemble des entiers naturels, les points B$_n$ sont alignés.
+\item Démontrer que, pour tout entier naturel $n$, le point A$_n$ appartient à la droite d'équation réduite:
+
+\[y=-x+1.\]
+
+\end{enumerate}
+\end{enumerate}
+
+\vspace{0,25cm}
+
+\textbf{Exercice 4 \hfill 5 points}
+
+\medskip
+
+\textbf{Candidats ayant suivi l'enseignement de spécialité}
+
+\bigskip
+
+On appelle suite de Fibonacci la suite $(u_n)$ définie par $u_0=0$, $u_1=1$ et, pour tout entier naturel $n$,
+
+\[u_{n+2} = u_{n+1} + u_{n}.\]
+
+On admet que, pour tout entier naturel $n$, $u_n$ est un entier naturel.
+
+\smallskip
+
+\emph{Les parties \emph{A} et \emph{B} peuvent être traitées de façon indépendante.}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item 
+\begin{enumerate}
+\item Calculer les termes de la suite de Fibonacci jusqu'à $u_{10}$.
+\item Que peut-on conjecturer sur le PGCD de $u_{n}$ et $u_{n+1}$ pour tout entier naturel $n$?
+\end{enumerate}
+
+\item On définit la suite $(v_n)$ par $v_n=u_n^2 - u_{n+1}\times u_{n-1}$ pour tout entier naturel $n$ non nul.
+\begin{enumerate}
+\item Démontrer que, pour tout entier naturel $n$ non nul, $v_{n+1} = -v_n$.
+\item En déduire que, pour tout entier naturel $n$ non nul,
+
+\[u_n^2 - u_{n+1}\times u_{n-1} = \left (-1\right )^{n-1}.\]
+\item Démontrer alors la conjecture émise à la question \textbf{1. b.}
+\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère la matrice
+$F=\begin{pmatrix} 1 & 1 \\ 1 & 0\end{pmatrix}$.
+
+\begin{enumerate}
+\item Calculer $F^2$ et $F^3$. On pourra utiliser la calculatrice.
+\item Démontrer par récurrence que, pour tout entier naturel $n$ non nul,
+
+\[F^n = \begin{pmatrix} u_{n+1} & u_n \\ u_n & u_{n-1} \end{pmatrix}\]
+
+\item 
+\begin{enumerate}
+\item Soit $n$ un entier naturel non nul. En remarquant que
+$F^{2n+2} = F^{n+2}\times F^{n}$, démontrer que
+
+\[u_{2n+2} =u_{n+2}\times u_{n+1}+ u_{n+1}\times u_n.\]
+
+\item En déduire que, pour tout entier naturel $n$ non nul,
+
+\[u_{2n+2} = u_{n+2}^2 - u_n^2.\]
+\end{enumerate}
+
+\item On donne $u_{12}=144$.
+
+Démontrer en utilisant la question \textbf{3.} qu'il existe un triangle rectangle dont les longueurs des côtés sont toutes des nombres entiers, l'une étant égale à 12.
+
+Donner la longueur des deux autres côtés.
+\end{enumerate}
+
+
+
+
+\end{document}
