@@ -1,7 +1,7 @@
 from latexconvertmd import LaTeX, setup
 import codecs
 
-file = "S_Nouvelle_Caledonie_27_nov_2018_FH.tex"
+file = "Corrige_S_Nouvelle_Caledonie_27_nov_2018_FH.tex"
 
 with codecs.open(file, "r", "utf-8") as f:
     data = f.read()

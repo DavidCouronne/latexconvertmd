@@ -75,25 +75,31 @@ class Source:
         Converti les environnements enumerate en listes html"""
         level_enumerate = 0
         level_item = 0
+        enumi = 0
+        enumii = 0
         new_lines = []
+        arabic = "abcdefghijklmnopqrstuvwxz"
 
         for line in self.lines:
             if r"\begin{enumerate}" in line:
                 level_enumerate = level_enumerate + 1
-                if level_enumerate == 2:
-                    line = r"""<ol type ="a" >"""
-                else:
-                    line = r"""<ol >"""
+                line = ""
             elif r"\end{enumerate}" in line:
-                level_enumerate = level_enumerate - 1
-                line = r"""</li></ol>"""
-            elif r"\item" in line:
-                if level_item == 0:
-                    line = line.replace(r"\item", "<li>")
-                    level_item = level_item + 1
+                if level_enumerate == 2:
+                    enumii = 0
                 else:
-                    line = line.replace(r"\item", "</li><li>")
-                    level_item = level_item - 1
+                    enumi = 0
+                level_enumerate = level_enumerate - 1
+                line = ""
+            elif r"\item" in line and level_enumerate !=0:
+                if level_enumerate == 1:
+                    enumi = enumi + 1
+                    line = line.replace(r"\item", str(enumi)+". ")
+                    line = "\n\n" + line
+                else:
+                    line = line.replace(r"\item", arabic[enumii]+") ")
+                    enumii = enumii + 1
+                    line = "\n\n" + line
             new_lines.append(line)
         self.lines = new_lines
 
@@ -106,21 +112,11 @@ class Source:
 
         for line in self.lines:
             if r"\begin{itemize}" in line:
-                level_itemize = level_itemize + 1
-                if level_itemize == 2:
-                    line = r"""<ul >"""
-                else:
-                    line = r"""<ul >"""
+                line = "\n\n"
             elif r"\end{itemize}" in line:
-                level_itemize = level_itemize - 1
-                line = r"""</li></ul>"""
+                line = "\n\n"
             elif r"\item" in line:
-                if level_item == 0:
-                    line = line.replace(r"\item", "<li>")
-                    level_item = level_item + 1
-                else:
-                    line = line.replace(r"\item", "</li><li>")
-                    level_item = level_item - 1
+                line = line.replace(r"\item", "\n\n+ ")
             new_lines.append(line)
         self.lines = new_lines
 
@@ -177,7 +173,7 @@ class Source:
         """Effectue les taches de conversion"""
         # Opérations sur les lignes
         self.cleanSpace()
-        # self.convertEnumerate()
+        self.convertEnumerate()
         # self.convertItemize()
         self.findPstricks()
         # Opérations sur le contenu

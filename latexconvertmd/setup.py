@@ -45,22 +45,29 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                     1]],
                 [LaTeXCommands.LaTeXCommand("\\textsc", 1), [
                     1]],
+                [LaTeXCommands.LaTeXCommand("\\vect", 1), [
+                 '\\overrightarrow', 1,'} }']],
+                 [LaTeXCommands.LaTeXCommand("\\vectt", 1), [
+                 '\\overrightarrow', 1,'} }']],
                 ]
 # Remplacement de commandes avec aucun argument ou commandes math.
 listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$, $\\vec{v}$)"],
                       [LaTeXCommands.LaTeXCommand(
                           r"\\Oijk", 0), r"(O; $\\vec{i}$, $\\vec{j}$, $\\vec{k}$)"],
                       [LaTeXCommands.LaTeXCommand(r"\\degres", 0), "°"],
-                      [LaTeXCommands.LaTeXCommand(r"\\vect", 0), r"\\vec"],
-                      [LaTeXCommands.LaTeXCommand(r"\\og", 0), " \" "],
-                      [LaTeXCommands.LaTeXCommand(r"\\fg", 0), " \" "],
+                      #newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
+#\newcommand{\vectt}[1]{\overrightarrow{\,\mathstrut\text{#1}\,}}% vecteur(AB)
+                      #[LaTeXCommands.LaTeXCommand(r"\\vect", 0), r"\\vec"],
+                      [LaTeXCommands.LaTeXCommand(r"\\og", 0), " « "],
+                      [LaTeXCommands.LaTeXCommand(r"\\fg", 0), " » "],
                       [LaTeXCommands.LaTeXCommand(r"\\e", 0), "e"],
                       [LaTeXCommands.LaTeXCommand(r"\\i", 0), "i"],
+                      [LaTeXCommands.LaTeXCommand(r"\\ds", 0), r"\\displaystyle"],
                       ]
 
 # Remplacement sans regex
 listeReplaceText = [["\\,\\%", "%"],
-                    ["\\\\", "\n\n"],
+                    #["\\\\", "\n\n"],
                     ["\\[", " $$ "],
                     ["\\]", " $$ "],
                     ["pspicture*", "pspicture"],
