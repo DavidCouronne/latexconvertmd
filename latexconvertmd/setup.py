@@ -6,7 +6,18 @@ import re
 
 from latexconvertmd import LaTeXCommands
 
-
+# Commandes à supprimer avec TexSoup
+delCommands = ['vspace',
+'hspace',
+'parindent',
+'rhead',
+'lhead',
+'lfoot',
+'rfoot',
+'addtolength',
+'pagestyle',
+'thispagestyle',
+'marginpar']
 # Commandes sans argument à supprimer
 listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\hfill", 0),
@@ -19,26 +30,15 @@ listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourleft", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourright", 0),
                        ]
-# Commandes de mise en page ou de glue avec un argument à supprimer
-listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\thispagestyle", 1),
-                        LaTeXCommands.LaTeXCommand("\\rhead", 1),
-                        LaTeXCommands.LaTeXCommand("\\lhead", 1),
-                        LaTeXCommands.LaTeXCommand("\\lfoot", 1),
-                        LaTeXCommands.LaTeXCommand("\\rfoot", 1),
-                        LaTeXCommands.LaTeXCommand("\\parindent", 1),
-                        LaTeXCommands.LaTeXCommand("\\pagestyle", 1),
-                        LaTeXCommands.LaTeXCommand("\\hspace", 1),
-                        LaTeXCommands.LaTeXCommand("\\vspace", 1),
-                        LaTeXCommands.LaTeXCommand("\\addtolength", 2),
-                        LaTeXCommands.LaTeXCommand("\\marginpar", 1)
-                        ]
+# Commandes de mise en page ou de glue avec plusieurs arguments à supprimer
+listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\addtolength", 2)]
 
 
 # Remplacement de commandes avec un ou plusieurs arguments
 listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                 [LaTeXCommands.LaTeXCommand("\\textbf", 1), ["**", 1, "**"]],
                 [LaTeXCommands.LaTeXCommand("\\emph", 1), [
-                    "<em>", 1, "</em>"]],
+                    "_", 1, "_"]],
                 [LaTeXCommands.LaTeXCommand("\\rm", 1), [
                     1]],
                 [LaTeXCommands.LaTeXCommand("\\np", 1), [
@@ -50,21 +50,22 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
 listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$, $\\vec{v}$)"],
                       [LaTeXCommands.LaTeXCommand(
                           r"\\Oijk", 0), r"(O; $\\vec{i}$, $\\vec{j}$, $\\vec{k}$)"],
-                      [LaTeXCommands.LaTeXCommand(r"\\degres", 0), " &deg "],
+                      [LaTeXCommands.LaTeXCommand(r"\\degres", 0), "°"],
                       [LaTeXCommands.LaTeXCommand(r"\\vect", 0), r"\\vec"],
-                      [LaTeXCommands.LaTeXCommand(r"\\og", 0), " &laquo "],
-                      [LaTeXCommands.LaTeXCommand(r"\\fg", 0), " &raquo "],
+                      [LaTeXCommands.LaTeXCommand(r"\\og", 0), " \" "],
+                      [LaTeXCommands.LaTeXCommand(r"\\fg", 0), " \" "],
                       [LaTeXCommands.LaTeXCommand(r"\\e", 0), "e"],
+                      [LaTeXCommands.LaTeXCommand(r"\\i", 0), "i"],
                       ]
 
 # Remplacement sans regex
-listeReplaceText = [["\\,\\%", "  &#37 "],
+listeReplaceText = [["\\,\\%", "%"],
                     ["\\\\", "\n\n"],
                     ["\\[", " $$ "],
                     ["\\]", " $$ "],
                     ["pspicture*", "pspicture"],
-                    ["\\begin{center}", """<div class="text-center">\n"""],
-                    ["\\end{center}", "</div>\n"],
+                    ["\\begin{center}", "\n"],
+                    ["\\end{center}", "\n"],
                     ["~", ""],
                     ["\\begin{flushleft}", ""],
                     ["\\end{flushleft}", ""],

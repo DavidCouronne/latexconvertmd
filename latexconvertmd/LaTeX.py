@@ -7,6 +7,8 @@ import re
 import os
 import codecs
 
+from TexSoup import TexSoup
+
 from latexconvertmd import LaTeXCommands, setup
 
 
@@ -31,7 +33,12 @@ class Source:
 
     def cleanCommand(self):
         """Agit sur le contenu.
-        Suprrime toutes les commandes de listeCommandesClean du fichier setup.py"""
+        Suprrime toutes les commandes de listeCommandesClean et delCommand du fichier setup.py"""
+        soup = TexSoup(self.contenu)
+        for command in setup.delCommands: 
+            for include in soup.find_all(command):       
+                include.delete()
+        self.contenu = repr(soup)
         for command in setup.listeCommandesClean:
             self.contenu = re.sub(command.regex, "", self.contenu)
             self.lines = self.contenu.splitlines()
@@ -158,8 +165,10 @@ class Source:
             f.close()
             os.system("latex temp.tex")
             os.system("dvisvgm temp")
-
-            os.rename("temp.svg", "figure"+str(nb_figure)+".svg")
+            try:
+                os.rename("temp.svg", "figure"+str(nb_figure)+".svg")
+            except:
+                print("Le fichier figure"+str(nb_figure)+".svg existe déjà")
             self.contenu = self.contenu.replace(
                 figure,
                 '![Image](./figure'+str(nb_figure)+".svg)")
