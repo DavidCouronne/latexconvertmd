@@ -147,6 +147,27 @@ class Source:
                     lignes_pstricks.append(line)
         self.pstricks = pstricks
 
+    def findTikz(self):
+        """Agit sur les lignes.
+        Essaie de trouver les envir
+        onnements Tikz"""
+        in_tikz = False
+        lignes_tikz = []
+        tikz = []
+        for line in self.lines:
+            if in_tikz:
+                lignes_tikz.append(line)
+                if r"\end{tikz" in line:
+                    in_tikz = False
+                    tikz.append("\n".join(lignes_tikz))
+                    lignes_tikz = []
+            else:
+                if r"\begin{tikz" in line:
+                    in_tikz = True
+                    lignes_tikz.append(line)
+        self.tikz = tikz
+        print(self.tikz)
+
     def replacePstricks(self):
         if len(self.pstricks) == 0:
             return
@@ -161,6 +182,45 @@ class Source:
 """
         
         for figure in self.pstricks:
+            self.nbfigure = self.nbfigure + 1
+            total = preamble + figure + r"\end{document}"
+            f = codecs.open("temp.tex", "w", "utf-8")
+            f.write(total)
+            f.close()
+            os.system("latex temp.tex")
+            os.system("dvisvgm temp")
+            try:
+                os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
+            except:
+                print("Le fichier figure"+str(self.nbfigure)+".svg existe déjà")
+            self.contenu = self.contenu.replace(
+                figure,
+                '![Image](./figure'+str(self.nbfigure)+".svg)")
+    
+    def replaceTikz(self):
+        if len(self.tikz) == 0:
+            return
+        preamble = r"""\documentclass{standalone}
+\usepackage{apmep}
+\usepackage{dcmaths}
+\usepackage{dccornouaille}
+\usepackage{dctikz}
+\usepackage{dccours}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+% l' unité
+\newcommand{\myunit}{1 cm}
+\tikzset{
+    node style sp/.style={draw,circle,minimum size=\myunit},
+    node style ge/.style={circle,minimum size=\myunit},
+    arrow style mul/.style={draw,sloped,midway,fill=white},
+    arrow style plus/.style={midway,sloped,fill=white},
+}
+\newcommand{\touchecalc}[1]{\fbox{#1}}
+\begin{document}
+
+"""
+        
+        for figure in self.tikz:
             self.nbfigure = self.nbfigure + 1
             total = preamble + figure + r"\end{document}"
             f = codecs.open("temp.tex", "w", "utf-8")
@@ -190,14 +250,22 @@ class Source:
         """Effectue les taches de conversion"""
         # Opérations sur les lignes
         self.cleanSpace()
+        self.findPstricks()
+        self.findTikz()
+        #Convertion figures
+        self.collapseLines()
+        self.replacePstricks()
+        self.replaceTikz()
+        #Enuemrate et Itemize
+        self.lines = self.contenu.splitlines()
         self.convertEnumerate()
         self.convertItemize()
-        self.findPstricks()
+        
         # Opérations sur le contenu
         self.collapseLines()
         self.checkEnv()
         self.contenu = self.contenu.replace("{}", "")
-        self.replacePstricks()
+        
         self.cleanCommand()
         self.replaceCommand()
         self.cleanLayout()
