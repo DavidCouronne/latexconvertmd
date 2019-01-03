@@ -176,6 +176,16 @@ class Source:
                 figure,
                 '![Image](./figure'+str(self.nbfigure)+".svg)")
 
+    def checkEnv(self):
+        for arg in config.listeEnv:
+            begin = "\\begin{"+arg[0]+"}"
+            print(begin, begin in self.contenu)
+            print(arg[1])
+            end = "\\end{"+arg[0]+"}"
+            self.contenu = self.contenu.replace(begin,arg[1])
+            self.contenu = self.contenu.replace(end,arg[2])
+
+
     def process(self):
         """Effectue les taches de conversion"""
         # Opérations sur les lignes
@@ -184,8 +194,9 @@ class Source:
         self.convertItemize()
         self.findPstricks()
         # Opérations sur le contenu
-        self.contenu = self.contenu.replace("{}", "")
         self.collapseLines()
+        self.checkEnv()
+        self.contenu = self.contenu.replace("{}", "")
         self.replacePstricks()
         self.cleanCommand()
         self.replaceCommand()
