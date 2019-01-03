@@ -13,10 +13,12 @@ from latexconvertmd import LaTeXCommands, config
 
 
 class Source:
-    def __init__(self, original=""):
+    def __init__(self, original="", exportFolder = config.exportFolder):
         self.original = original  # On garde l'original pour développement
         self.contenu = original
         self.lines = self.contenu.splitlines()
+        self.exportFolder = exportFolder
+        self.nbfigure = 0
 
     def collapseLines(self):
         """Recolle les lignes dans self.contenu"""
@@ -152,9 +154,9 @@ class Source:
 \begin{document}
 
 """
-        nb_figure = 0
+        
         for figure in self.pstricks:
-            nb_figure = nb_figure + 1
+            self.nbfigure = self.nbfigure + 1
             total = preamble + figure + r"\end{document}"
             f = codecs.open("temp.tex", "w", "utf-8")
             f.write(total)
@@ -162,12 +164,12 @@ class Source:
             os.system("latex temp.tex")
             os.system("dvisvgm temp")
             try:
-                os.rename("temp.svg", "figure"+str(nb_figure)+".svg")
+                os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
             except:
-                print("Le fichier figure"+str(nb_figure)+".svg existe déjà")
+                print("Le fichier figure"+str(self.nbfigure)+".svg existe déjà")
             self.contenu = self.contenu.replace(
                 figure,
-                '![Image](./figure'+str(nb_figure)+".svg)")
+                '![Image](./figure'+str(self.nbfigure)+".svg)")
 
     def process(self):
         """Effectue les taches de conversion"""
