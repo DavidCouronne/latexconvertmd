@@ -8,6 +8,7 @@ import os
 import codecs
 
 from TexSoup import TexSoup
+from slugify import slugify
 
 from latexconvertmd import LaTeXCommands, config
 
