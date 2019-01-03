@@ -7,9 +7,11 @@ import re
 from latexconvertmd import LaTeXCommands
 
 
-#Export folder
+#Default output folder,name end figure
 
-exportFolder = "export-md"
+outputFolder = "export-md"
+outputName = "README.md"
+outputFigure = "figure"
 
 # Commandes à supprimer avec TexSoup
 delCommands = ['vspace',
