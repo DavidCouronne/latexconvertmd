@@ -1,6 +1,9 @@
 from latexconvertmd import LaTeX, config
 import codecs
+import os
 
+print(os.path.join(os.getcwd(),"test"))
+os.chdir(os.path.join(os.getcwd(),"tests"))
 file = "Corrige_S_Nouvelle_Caledonie_27_nov_2018_FH.tex"
 
 with codecs.open(file, "r", "utf-8") as f:
