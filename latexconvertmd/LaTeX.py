@@ -9,7 +9,7 @@ import codecs
 
 from TexSoup import TexSoup
 
-from latexconvertmd import LaTeXCommands, setup
+from latexconvertmd import LaTeXCommands, config
 
 
 class Source:
@@ -33,32 +33,32 @@ class Source:
 
     def cleanCommand(self):
         """Agit sur le contenu.
-        Suprrime toutes les commandes de listeCommandesClean et delCommand du fichier setup.py"""
+        Suprrime toutes les commandes de listeCommandesClean et delCommand du fichier config.py"""
         soup = TexSoup(self.contenu)
-        for command in setup.delCommands: 
+        for command in config.delCommands: 
             for include in soup.find_all(command):       
                 include.delete()
         self.contenu = repr(soup)
-        for command in setup.listeCommandesClean:
+        for command in config.listeCommandesClean:
             self.contenu = re.sub(command.regex, "", self.contenu)
             self.lines = self.contenu.splitlines()
 
     def cleanLayout(self):
         """Agit sur le contenu.
-        Supprime toutes les commandes de listeLayout du fichier setup.py"""
-        for command in setup.listeCommandesLayout:
+        Supprime toutes les commandes de listeLayout du fichier config.py"""
+        for command in config.listeCommandesLayout:
             self.contenu = command.cleanCommand(self.contenu)
 
     def replaceCommandSimple(self):
         """Agit sur le contenu.
         Remplace les commandes sans arguments"""
-        for command, replace in setup.listeReplaceSimple:
+        for command, replace in config.listeReplaceSimple:
             self.contenu = re.sub(command.regex, replace, self.contenu)
 
     def replaceCommand(self):
         """Agit sur le contenu.
-        Remplace toutes les commande de listeReplace de setup.py"""
-        for command, arg in setup.listeReplace:
+        Remplace toutes les commande de listeReplace de config.py"""
+        for command, arg in config.listeReplace:
             #print("commande", command)
             #print("arg", arg)
             self.contenu = command.replaceCommand(self.contenu, arg)
@@ -66,7 +66,7 @@ class Source:
     def replaceText(self):
         """Agit sur le contenu.
         Remplacement simple sans regex"""
-        for texaremplacer, textederemplacement in setup.listeReplaceText:
+        for texaremplacer, textederemplacement in config.listeReplaceText:
             self.contenu = self.contenu.replace(
                 texaremplacer, textederemplacement)
 

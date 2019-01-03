@@ -1,4 +1,4 @@
-from latexconvertmd import LaTeX, setup
+from latexconvertmd import LaTeX, config
 import codecs
 
 file = "Corrige_S_Nouvelle_Caledonie_27_nov_2018_FH.tex"
