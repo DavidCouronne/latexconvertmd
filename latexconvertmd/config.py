@@ -6,6 +6,11 @@ import re
 
 from latexconvertmd import LaTeXCommands
 
+
+#Export folder
+
+exportFolder = "export-md"
+
 # Commandes à supprimer avec TexSoup
 delCommands = ['vspace',
 'hspace',
