@@ -86,3 +86,9 @@ listeReplaceText = [["\\,\\%", "%"],
                     ["\\strut", ""],
 
                     ]
+
+# Environnements avec titre optionnel
+# Par exemple \begin{definition}[Titre]
+
+listeEnv = [['definition','::: tip ',':::'],
+]
