@@ -14,7 +14,7 @@ from latexconvertmd import LaTeXCommands, config
 
 
 class Source:
-    def __init__(self, original="", exportFolder = config.exportFolder):
+    def __init__(self, original="", exportFolder = config.outputFolder):
         self.original = original  # On garde l'original pour développement
         self.contenu = original
         self.lines = self.contenu.splitlines()
