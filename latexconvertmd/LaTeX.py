@@ -181,7 +181,7 @@ class Source:
         # Opérations sur les lignes
         self.cleanSpace()
         self.convertEnumerate()
-        # self.convertItemize()
+        self.convertItemize()
         self.findPstricks()
         # Opérations sur le contenu
         self.contenu = self.contenu.replace("{}", "")

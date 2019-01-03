@@ -13,6 +13,7 @@ exportFolder = "export-md"
 
 # Commandes à supprimer avec TexSoup
 delCommands = ['vspace',
+'renewcommand',
 'hspace',
 'parindent',
 'rhead',
@@ -34,6 +35,7 @@ listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\large", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourleft", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourright", 0),
+                       LaTeXCommands.LaTeXCommand(r"\\tableofcontents", 0),
                        ]
 # Commandes de mise en page ou de glue avec plusieurs arguments à supprimer
 listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\addtolength", 2)]
