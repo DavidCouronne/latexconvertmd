@@ -35,8 +35,13 @@ class Source:
 
     def cleanCommand(self):
         """Agit sur le contenu.
-        Suprrime toutes les commandes de listeCommandesClean et delCommand du fichier config.py"""
+        Supprime toutes les commandes de listeCommandesClean et delCommand du fichier config.py
+        Et au passage gère les sections et subsections"""
         soup = TexSoup(self.contenu)
+        for section in soup.find_all('section'):
+            section.replace('## '+section.string)
+        for subsection in soup.find_all('subsection'):
+            subsection.replace('### '+subsection.string)
         for command in config.delCommands: 
             for include in soup.find_all(command):       
                 include.delete()
