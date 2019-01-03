@@ -3,7 +3,7 @@ title: Guide d'utilisation
 sidebar: auto
 ---
 
-# Démarrage
+# Guide d'utilisation
 
 ## Dépendances
 
@@ -11,4 +11,4 @@ sidebar: auto
 ``` bash
 pip install texsoup
 ```
-+ dvisvg
++ dvisvg : à télécharger sur le site [https://dvisvgm.de/](https://dvisvgm.de/)
