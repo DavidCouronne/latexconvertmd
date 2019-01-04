@@ -12,6 +12,8 @@ sidebar: auto
 pip install texsoup
 ```
 + dvisvg : à télécharger sur le site [https://dvisvgm.de/](https://dvisvgm.de/)
++ Python 3
++ Une distribution LaTeX
 
 
 ## Installation
