@@ -271,8 +271,8 @@ class Source:
                 f = codecs.open("temp.tex", "w", "utf-8")
                 f.write(total)
                 f.close()
-                os.system("latex temp.tex")
-                os.system("dvisvgm temp")
+                os.system("xelatex temp.tex")
+                os.system("magick convert temp.pdf temp.svg")
                 try:
                     os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
                 except:
