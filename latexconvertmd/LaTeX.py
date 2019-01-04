@@ -14,12 +14,15 @@ from latexconvertmd import LaTeXCommands, config
 
 
 class Source:
-    def __init__(self, original="", exportFolder = config.outputFolder):
+    def __init__(self, original="", exportFolder = config.outputFolder, file = False):
         self.original = original  # On garde l'original pour développement
         self.contenu = original
         self.lines = self.contenu.splitlines()
         self.exportFolder = exportFolder
         self.nbfigure = 0
+        if file != False:
+            self.outputFolder = slugify(file)
+        print(self.exportFolder)
 
     def collapseLines(self):
         """Recolle les lignes dans self.contenu"""

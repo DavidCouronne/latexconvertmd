@@ -12,7 +12,7 @@ with codecs.open(file, "r", "utf-8") as f:
 texheader, document = data.split("\\begin{document}")
 
 
-latex = LaTeX.Source(document)
+latex = LaTeX.Source(document, file=file)
 latex.process()
 
 name = "export.md"
