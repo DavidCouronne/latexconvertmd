@@ -36,6 +36,12 @@ class Source:
             line = line.strip()
             new_lines.append(line)
         self.lines = new_lines
+    
+    def cleanLines(self):
+        """Agit sur le contenu.
+        Supprime les lignes vides"""
+        while "\n\n\n" in self.contenu:
+            self.contenu = self.contenu.replace("\n\n\n","\n\n")
 
     def cleanCommand(self):
         """Agit sur le contenu.
@@ -275,3 +281,4 @@ class Source:
         self.cleanLayout()
         self.replaceCommandSimple()
         self.replaceText()
+        self.cleanLine()

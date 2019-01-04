@@ -7,7 +7,7 @@ import re
 from latexconvertmd import LaTeXCommands
 
 
-#Default output folder,name end figure
+# Default output folder,name end figure
 
 outputFolder = "export-md"
 outputName = "README.md"
@@ -15,19 +15,19 @@ outputFigure = "figure"
 
 # Commandes à supprimer avec TexSoup
 delCommands = ['vspace',
-'arraycolsep',
-'label',
-'renewcommand',
-'hspace',
-'parindent',
-'rhead',
-'lhead',
-'lfoot',
-'rfoot',
-'addtolength',
-'pagestyle',
-'thispagestyle',
-'marginpar']
+               'arraycolsep',
+               'label',
+               'renewcommand',
+               'hspace',
+               'parindent',
+               'rhead',
+               'lhead',
+               'lfoot',
+               'rfoot',
+               'addtolength',
+               'pagestyle',
+               'thispagestyle',
+               'marginpar']
 # Commandes sans argument à supprimer
 listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\hfill", 0),
@@ -57,25 +57,26 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                 [LaTeXCommands.LaTeXCommand("\\textsc", 1), [
                     1]],
                 [LaTeXCommands.LaTeXCommand("\\vect", 1), [
-                 '\\overrightarrow', 1,'} }']],
-                 [LaTeXCommands.LaTeXCommand("\\vectt", 1), [
-                 '\\overrightarrow', 1,'} }']],
-                 [LaTeXCommands.LaTeXCommand("\\fexo", 3), [
-                 '# ', 2,'\n']],
+                 '\\overrightarrow', 1, '} }']],
+                [LaTeXCommands.LaTeXCommand("\\vectt", 1), [
+                 '\\overrightarrow', 1, '} }']],
+                [LaTeXCommands.LaTeXCommand("\\fexo", 3), [
+                 '# ', 2, '\n']],
                 ]
 # Remplacement de commandes avec aucun argument ou commandes math.
 listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$, $\\vec{v}$)"],
                       [LaTeXCommands.LaTeXCommand(
                           r"\\Oijk", 0), r"(O; $\\vec{i}$, $\\vec{j}$, $\\vec{k}$)"],
                       [LaTeXCommands.LaTeXCommand(r"\\degres", 0), "°"],
-                      #newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
-#\newcommand{\vectt}[1]{\overrightarrow{\,\mathstrut\text{#1}\,}}% vecteur(AB)
+                      # newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
+                      # \newcommand{\vectt}[1]{\overrightarrow{\,\mathstrut\text{#1}\,}}% vecteur(AB)
                       #[LaTeXCommands.LaTeXCommand(r"\\vect", 0), r"\\vec"],
                       [LaTeXCommands.LaTeXCommand(r"\\og", 0), " « "],
                       [LaTeXCommands.LaTeXCommand(r"\\fg", 0), " » "],
                       [LaTeXCommands.LaTeXCommand(r"\\e", 0), "e"],
                       [LaTeXCommands.LaTeXCommand(r"\\i", 0), "i"],
-                      [LaTeXCommands.LaTeXCommand(r"\\ds", 0), r"\\displaystyle"],
+                      [LaTeXCommands.LaTeXCommand(
+                          r"\\ds", 0), r"\\displaystyle"],
                       ]
 
 # Remplacement sans regex
@@ -90,22 +91,23 @@ listeReplaceText = [["\\,\\%", "%"],
                     ["\\begin{flushleft}", ""],
                     ["\\end{flushleft}", ""],
                     ["\\strut", ""],
+                    ["\\end{document}", ""]
 
                     ]
 
 # Environnements avec titre optionnel
 # Par exemple \begin{definition}[Titre]
 
-listeEnv = [['definition','::: warning Définition ',':::'],
-['definitions','::: warning Définitions ',':::'],
-['remarque','::: tip Remarque ',':::'],
-['remarques','::: tip Remarques ',':::'],
-['exemple','::: tip Exemple ',':::'],
-['propriete','::: warning Propriété ',':::'],
-['proprietes','::: warning Propriétés ',':::'],
-['theoreme','::: warning Théorème ',':::'],
-['methode','::: tip Méthode ',':::'],
-['exercice','::: tip Exercice ',':::'],
-['solution','::: tip Solution ',':::'],
-['preuve','::: tip Preuve ',':::'],
-]
+listeEnv = [['definition', '::: warning Définition ', ':::'],
+            ['definitions', '::: warning Définitions ', ':::'],
+            ['remarque', '::: tip Remarque ', ':::'],
+            ['remarques', '::: tip Remarques ', ':::'],
+            ['exemple', '::: tip Exemple ', ':::'],
+            ['propriete', '::: warning Propriété ', ':::'],
+            ['proprietes', '::: warning Propriétés ', ':::'],
+            ['theoreme', '::: warning Théorème ', ':::'],
+            ['methode', '::: tip Méthode ', ':::'],
+            ['exercice', '::: tip Exercice ', ':::'],
+            ['solution', '::: tip Solution ', ':::'],
+            ['preuve', '::: tip Preuve ', ':::'],
+            ]

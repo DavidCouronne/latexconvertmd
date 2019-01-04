@@ -15,8 +15,12 @@ texheader, document = data.split("\\begin{document}")
 latex = LaTeX.Source(document, file=file)
 latex.process()
 
-name = "export.md"
+name = "README.md"
 total = texheader + "\\begin{document}\n\n" + latex.contenu
+contenu = """---
+sidebar: auto
+---
+""" + latex.contenu
 f = codecs.open(name, "w", "utf-8")
-f.write(latex.contenu)
+f.write(contenu)
 f.close()
