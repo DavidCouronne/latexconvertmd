@@ -248,11 +248,10 @@ class Source:
         # Opérations sur le contenu
         self.collapseLines()
         self.checkEnv()
-        self.contenu = self.contenu.replace("{}", "")
-        
         self.cleanCommand()
         self.replaceCommand()
         self.cleanLayout()
         self.replaceCommandSimple()
         self.replaceText()
+        self.contenu = self.contenu.replace("{}", "")
         self.cleanLines()
