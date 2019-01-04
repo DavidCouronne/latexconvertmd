@@ -52,6 +52,12 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                     "_", 1, "_"]],
                 [LaTeXCommands.LaTeXCommand("\\rm", 1), [
                     1]],
+                [LaTeXCommands.LaTeXCommand("\\fbox", 1), [
+                    1]],
+                [LaTeXCommands.LaTeXCommand("\\mbox", 1), [
+                    1]],
+                [LaTeXCommands.LaTeXCommand("\\textcolor", 2), [
+                    2]],
                 [LaTeXCommands.LaTeXCommand("\\np", 1), [
                     1]],
                 [LaTeXCommands.LaTeXCommand("\\textsc", 1), [
