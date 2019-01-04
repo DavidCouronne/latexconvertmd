@@ -16,5 +16,5 @@ pip install texsoup
 
 ## Installation
 ```bash
-python -m pip install --index-url https://test.pypi.org/simple/ latexconvertmd -upgrade
+python -m pip install --index-url https://test.pypi.org/simple/ latexconvertmd --upgrade
 ```
