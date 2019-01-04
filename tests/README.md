@@ -4,9 +4,6 @@ sidebar: auto
 
 # Calcul matriciel
 
-
-
-
 ## Définitions et vocabulaire
 
 %Dans tout ce chapitre, sauf indication contraire, $m$, $n$ , $p$, $i$ et $j$ désignent des entiers naturels non nuls.
@@ -14,9 +11,7 @@ sidebar: auto
 ::: warning Définition [Matrice]
 Une **matrice** de **taille** $m\times n$ est un tableau de nombres formé de $m$ lignes et $n$ colonnes qui s’écrit sous la forme :
 
-
 ![Image](./figure1.svg)
-
 
 Le nombre $a_{ij}$ (avec $1\leqslant i \leqslant m$ et $1\leqslant j \leqslant n$) est situé dans la $i$-ième ligne et la $j$-ième colonne.
 
@@ -38,19 +33,11 @@ Le coefficient $a_{12}$  vaut $7$. Le coefficient $a_{21}$  vaut $3$.
 
 ::: warning Définition [Matrice ligne, matrice colonne, matrice carrée]
 
-
-
-
-
 +  Une matrice de taille $1\times n$ est appelée **matrice ligne** de taille $n$.
-
 
 +  Une matrice  de taille $n\times 1$ est appelée **matrice colonne** de taille $n$.
 
-
 +  Une matrice de taille $n\times n$ est appelée **matrice carrée** d'**ordre** $n$.
-
-
 
 :::
 
@@ -65,17 +52,14 @@ $A=\begin{pmatrix}
 \end{pmatrix}$ sont respectivement une matrice ligne de taille $3$, une matrice colonne de taille $2$ et une matrice carrée d'ordre $2$.
 :::
 
-
 ::: warning Définition [Matrices égales]
 Deux matrices $A=(a_{ij})$  et $B=(b_{ij})$  sont **égales** si elles ont la même taille $m\times n$ et si,
 pour tout couple $(i;j)$ tel que $1\leqslant i \leqslant m$ et $1\leqslant j \leqslant n$, on a $a_{ij}=b_{ij}$.
 :::
 
-
 ::: warning Définition [Matrice diagonale]
 Une **matrice diagonale** $(a_{ij})$ est une matrice carrée dont les coefficients à l'extérieur
 de la **diagonale principale**  sont nuls, c'est-à-dire tels que $a_{ij}=0$ pour $i\neq j$.
-
 
 $\left(\begin{array}{cccc}
 a_1    & 0      & \cdots & 0      \\
@@ -84,14 +68,12 @@ a_1    & 0      & \cdots & 0      \\
 0      & \cdots & 0      & a_n
 \end{array}\right)$
 
-
 :::
 
 ::: tip Remarque 
 Une matrice diagonale  se note aussi $\boldsymbol{\text{diag}(a_1, a_2, \ldots, a_n)}$.\\
 Dans une matrice diagonale, un ou plusieurs coefficients $a_{i}$ peuvent être  nuls.
 :::
-
 
 ::: warning Définition [Matrice identité]
 La matrice identité d'ordre $\boldsymbol{n}$, dont la diagonale principale ne contient que des $1$.
@@ -107,8 +89,6 @@ L'identité d'ordre 3 est $I_3 = \begin{pmatrix}
 ::: tip Remarque 
 S'il n'y a pas d'ambiguïté, on note l'identité $I$ sans préciser son ordre en indice.
 :::
-
-
 
 ::: warning Définition [Matrice transposée]
 La **matrice transposée** d'une matrice $A$ de taille  $m\times n$ est la matrice notée $\boldsymbol{A^\mathsf{T}}$,
@@ -146,20 +126,15 @@ Soit $A=\begin{pmatrix}
 \end{pmatrix}$.
 :::
 
-
-
 %::: warning Définition [Matrice opposée]
 %La **matrice opposée** d'une matrice $A$ est la matrice notée $-A$ dont les coefficients sont les opposés des coefficients de $A$.
 %:::
-
 
 ::: warning Propriété 
 Soit $A$, $B$, $C$ trois matrices de même taille.
 \begin{colitemize}{2}
 
-
 +  $A+B=B+A$ (commutativité)
-
 
 +  $(A+B)+C=A+(B+C)$ (associativité)
 \end{colitemize}
@@ -196,9 +171,7 @@ $A-B=A+(-B)=
 \end{pmatrix}$.
 :::
 
-
 ### Produit d'une matrice par un réel
-
 
 ::: warning Définition [Produit d'une matrice par un réel]
 Soit $A$ une matrice et $k$ un nombre réel.\\
@@ -219,25 +192,19 @@ Alors, $-2A=\begin{pmatrix}
 \end{pmatrix}$.
 :::
 
-
 ::: warning Propriété 
 Soit $A$ et $B$ deux matrices de même taille et deux réels $k$ et $k'$.
 \begin{colitemize}{2}
 
-
 +  $0A=0$ et $1A=A$
-
 
 +  $k(A+B)=kA+kB$
 
-
 +  $(k+k')A=kA+k'A$
-
 
 +  $(kk')A=k(k'A)$
 \end{colitemize}
 :::
-
 
 ::: tip Remarque 
 Dans l'égalité $0A=0$, le $0$ de gauche est un réel mais celui de droite désigne la matrice nulle,
@@ -253,7 +220,6 @@ a_1 &  \cdots & a_n
 b_1\\ \vdots \\ b_n \end{pmatrix}$}  est noté $AB$ et est égal au réel $\displaystyle\sum_{i=1}^na_ib_i=a_1b_1+a_2b_2+\cdots+a_nb_n$.
 :::
 
-
 ::: tip Exemple 
 Soit $A=\begin{pmatrix}
 3 & 0 & -2
@@ -261,32 +227,19 @@ Soit $A=\begin{pmatrix}
 -1\\ -4\\ -2 \end{pmatrix}$. $AB=3\times(-1)+0\times(-4)-2\times(-2)=1$.
 :::
 
-
 ::: warning Définition [Produit de deux matrices]
 Soit $A$ une matrice de taille $m\times n$ et $B$ une matrice de taille $n\times p$.\\
 Le produit de deux matrices de $A$ par $B$, noté $AB$, est la matrice $C=(c_{ij})$ de taille $m\times p$ telle que $c_{ij}$ est égal au produit de la $i$-ième ligne de $A$ par la $j$-ième colonne de $B$.
 :::
 
-
-
 ![Image](./figure2.svg)
-
-
-
 
 ::: tip Remarques 
 
-
-
-
-
 +  Le produit d'une matrice $A$ par une matrice $B$ n'existe qu'à condition que le nombre de colonnes de $A$ soit égale au nombre de lignes de $B$.
-
 
 +  Si le produit d'une matrice $A$ par une matrice $B$ existe, en général, il n'est pas commutatif : en premier lieu, $BA$ n'existe pas toujours
 (il n'existe que si $A$ et $B$ sont des matrices carrées) et, même si c'est le cas, généralement on n'a pas $AB=BA$.
-
-
 
 :::
 
@@ -298,7 +251,6 @@ les matrices suivant le schéma
 \hline
 $A$ & $C$
 \end{tabular} de sorte que  $c_{ij}$ soit à l'intersection du prolongement de la $i$-ème ligne de $A$ et de la $j$-ième colonne de $B$.
-
 
 ::: tip Exercice 
 Soit
@@ -354,22 +306,13 @@ Soit $A=\begin{pmatrix}1 & -1 \\ 0 & 0\end{pmatrix}$ et $B=\begin{pmatrix}1 & 2 
 ::: warning Propriétés 
 Soit $A$, $B$ et $C$ trois matrices compatibles avec les produits écrits ci-après et soit $k$ un réel.
 
-
-
-
-
 +  $(AB)C = A(BC) = ABC$ (associativité)
-
 
 +  $A(B+C)=AB+AC$ et $(A+B)C=AC+BC$ (distributivité)
 
-
 +  $(kA)B=A(kB)=k(AB)$
 
-
 +  $AI=IA=A$ et $A0=0A=0$
-
-
 
 :::
 
@@ -379,16 +322,9 @@ Soit $A$, $B$ et $C$ trois matrices compatibles avec les produits écrits ci-apr
 Soit $A$ une matrice carrée et $n$ un entier naturel.\\
 La puissance $n$-ième de $A$ est la matrice notée $A^n$ égale :
 
-
-
-
-
 +  au produit de $n$ facteurs $A$ si $n\neq0$ ;
 
-
 +  à la matrice identité $I$ de même ordre que celui de $A$ si $n=0$.
-
-
 
 :::
 
@@ -412,10 +348,7 @@ On peut démontrer par récurrence que, pout tout $n\in\mathbb{N}$,  $A^n=\begin
 
 ::: tip Méthode [Effectuer un calcul matriciel avec la calculatrice]
 
-
-
 **Exercice:**
-
 
 Soit
 $A=\begin{pmatrix}
@@ -428,62 +361,32 @@ $A=\begin{pmatrix}
 1 & 2 & 3
 \end{pmatrix}$. Calculer $A^2-2AB+B^2$.
 
-
-
-
 **Correction**
-
-
 
 \textcolor{H1}{\bfseries Avec une calculatrice TI % \raisebox{-1mm}{\includegraphics[height=4mm]{TI_logo.eps}}
 }
 
-
-
-
-
 +  Entrer dans le mode "Matrice"  puis le menu "EDIT".
 
-
 +  Saisir la taille de la matrice $A$ puis ses coefficients. Pour les coefficients négatifs, utiliser la touche "(-)". Faire de même pour $B$.
-
 
 +  Quitter le mode "Matrice" puis y entrer à nouveau et, dans le menu "NOMS", sélectionner la matrice \includegraphics[height=4mm]{TI_[A].eps}.
 Compléter la formule et taper "Entrer".
 
-
 \fbox{\includegraphics[height=2.cm]{TI_screenshot1.eps}}  \fbox{\includegraphics[height=2.cm]{TI_screenshot2.eps}}
-
-
-
-
-
 
 \textcolor{H1}{\bfseries Avec une calculatrice \includegraphics[height=2mm]{CASIO_logo.eps}}
 
-
-
-
-
 +  Entrer dans le menu "RUN-MAT" puis choisir \includegraphics[height=3mm]{CASIO_MAT.eps} (touche \touchecalc{F3}).
-
 
 +  Saisir la taille de la matrice $A$ puis ses coefficients. Faire de même pour $B$.
 
-
 +  Quitter \includegraphics[height=3mm]{CASIO_MAT.eps}, taper la formule en faisant précéder chaque nom de matrice par "Mat" (touches \touchecalc{SHIFT} puis \touchecalc{2}) : \includegraphics[height=3mm]{CASIO_screenshot2.eps}. Exécuter.
-
 
 \fbox{\includegraphics[height=2.cm]{CASIO_screenshot1.eps}}
  \fbox{\includegraphics[height=2.cm]{CASIO_screenshot3.eps}}
 
-
-
-
-
-
 :::
-
 
 ## Matrices inversibles
 
@@ -517,8 +420,6 @@ Soit $A$ une matrice inversible ayant deux inverses  $B$ et $C$.\\
 On a $B=BI=B(AC)=(BA)C=IC=C$. Ainsi, $B=C$. Donc, l'inverse de $A$ est unique.
 :::
 
-
-
 ::: warning Propriété 
 Si $AB=I$, alors $A$ est inversible et $B=A^{-1}$.
 :::
@@ -546,7 +447,6 @@ $B=\begin{pmatrix}
 Donc $A$ et $B$ sont inverses l'une de l'autre et on a les égalités $A^{-1}=B$ et $B^{-1}=A$.
 :::
 
-
 ### Inverse d'une matrice carrée d'ordre 2
 
 ::: warning Définition [Déterminant d'une matrice carrée d'ordre 2]
@@ -559,19 +459,13 @@ c & d
 \end{vmatrix}$ égal à $ad-bc$.
 :::
 
-
 ::: warning Théorème [Inverse d'une matrice carrée d'ordre 2]
 On prend $M \neq 0$.
-
-
-
-
 
 +  La matrice $M=\begin{pmatrix}
 a & b \\
 c & d
 \end{pmatrix}$  est inversible si, et seulement si, $ad-bc\neq0$.\\
-
 
 +  Si $A$ est inversible, alors $A^{-1}=\dfrac{1}{ad-bc}\begin{pmatrix}
 d & -b \\
@@ -580,8 +474,6 @@ d & -b \\
 d & -b \\
 -c & a
 \end{pmatrix}$.
-
-
 
 :::
 
@@ -604,10 +496,6 @@ ad-bc & 0 \\
 \end{pmatrix}
 $.
 
-
-
-
-
 +  Si $ad-bc\neq0$, alors $\dfrac{1}{ad-bc}MN=I\Leftrightarrow M\left(\dfrac{1}{ad-bc}N\right)=I$.\\
 Donc $M$ est inversible et son inverse est $\dfrac{1}{ad-bc}N=\dfrac{1}{ad-bc}
 \begin{pmatrix}
@@ -615,14 +503,10 @@ d & -b \\
 -c & a
 \end{pmatrix}$.
 
-
 +  Si $ad-bc=0$, alors $MN=0$. Supposons alors que $M$ soit inversible, d'inverse $P$.\\
 Alors, on aurait $PMN=IN=N$ et  $PMN=P0=0$ et donc $N=0$, ce qui est absurde car $M \neq 0$.
 
-
 +  On a donc montré que si $ad-bc \neq 0$ alors $M$ est inversible, et si $ad-bd=0$ alors $M$ n'est pas inversible. On obtient donc l'équivalence demandée.
-
-
 
 :::
 
@@ -635,17 +519,10 @@ On montre ensuite que $\text{non}(A) \Rightarrow \text{non}(B)$, ce qui nous don
 
 ::: tip Remarques 
 
-
-
-
-
 +  Toute matrice carrée admet un déterminant et un seul, mais pour un ordre strictement supérieur à 2,
 il n'existe pas de formule simple pour le calculer et on utilisera une calculatrice ou un logiciel de calcul formel.
 
-
 +  Le déterminant non nul est un critère d'inversibilité d'une matrice carrée de tout ordre.
-
-
 
 :::
 
@@ -663,7 +540,6 @@ Ainsi, $A$ est inversible et $A^{-1}=\dfrac{1}{2}
 3 & -4 \\
 -1 & 1,5\end{pmatrix}$.
 :::
-
 
 ## Résolution d'un système linéaire
 
@@ -709,9 +585,6 @@ a'x+b'y & = & c'
 Cette propriété se généralise à un système  de dimension quelconque.
 :::
 
-
-
-
 ::: tip Exemple 
 $\begin{pmatrix}
 2 & -3 & 1 \\
@@ -727,7 +600,6 @@ $\left\{\begin{array}{ccc}
 \end{array}\right.$.
 :::
 
-
 ::: warning Propriété 
 Soit $A$ une matrice carrée inversible d'ordre $n$ et $B$ une matrice colonne de taille $n$.\\
 Alors, le système linéaire d'écriture matricielle $AX=B$ admet une unique solution :\\
@@ -741,21 +613,16 @@ $AX=B \Leftrightarrow A^{-1}AX = A^{-1}B \Leftrightarrow
 IX=A^{-1}B \Leftrightarrow X=A^{-1}B$.
 :::
 
-
 ::: tip Méthode [Résoudre un système de deux équations à deux inconnues ]
 
-
 **Exercice:**
-
 
 Résoudre le système linéaire  $\left\{\begin{array}{lcc}
 2x+5y & = & 8 \\
 3x-4y & = & 15
 \end{array}\right. $.
 
-
 **Correction**
-
 
 On résout l'équation $AX=B$ où
 $A=\begin{pmatrix}
@@ -783,9 +650,6 @@ Le système admet donc pour unique solution le couple $\left(\dfrac{107}{23};\df
 Un système linéaire d'écriture matricielle $AX=B$ où $A$ n'est pas inversible a soit une infinité de solutions, soit aucune.
 :::
 
-
-
-
 ::: tip Exemple 
 Le système $\left\{\begin{array}{lcc}
 3x+6y & = & a \\
@@ -802,5 +666,3 @@ $\left\{\begin{array}{lcc}
 \end{array}\right.$ ce qui entraîne que $4a=3b$ toujours vrai, ou jamais.
 :::
 
-
-\end{document}
