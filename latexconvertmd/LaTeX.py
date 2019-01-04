@@ -272,13 +272,13 @@ class Source:
                 f.write(total)
                 f.close()
                 os.system("xelatex temp.tex")
-                os.system("magick convert temp.pdf temp.svg")
+                os.system("magick convert temp.pdf temp.png")
                 try:
-                    os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
+                    os.rename("temp.png", "figure"+str(self.nbfigure)+".png")
                 except:
-                    print("Le fichier figure"+str(self.nbfigure)+".svg existe déjà")
+                    print("Le fichier figure"+str(self.nbfigure)+".png existe déjà")
                 apres = apres[apres.find("}")+1:]
-                self.contenu = self.contenu + ' ![Image](./figure'+str(self.nbfigure)+".svg) "+apres
+                self.contenu = self.contenu + ' ![Image](./figure'+str(self.nbfigure)+".png) "+apres
     
     def replaceTab(self):
         if len(self.tab) == 0:
