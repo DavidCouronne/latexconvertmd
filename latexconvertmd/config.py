@@ -15,6 +15,8 @@ outputFigure = "figure"
 
 # Commandes à supprimer avec TexSoup
 delCommands = ['vspace',
+'arraycolsep',
+'label',
 'renewcommand',
 'hspace',
 'parindent',
@@ -58,6 +60,8 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                  '\\overrightarrow', 1,'} }']],
                  [LaTeXCommands.LaTeXCommand("\\vectt", 1), [
                  '\\overrightarrow', 1,'} }']],
+                 [LaTeXCommands.LaTeXCommand("\\fexo", 3), [
+                 '# ', 2,'\n']],
                 ]
 # Remplacement de commandes avec aucun argument ou commandes math.
 listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$, $\\vec{v}$)"],
@@ -92,10 +96,16 @@ listeReplaceText = [["\\,\\%", "%"],
 # Environnements avec titre optionnel
 # Par exemple \begin{definition}[Titre]
 
-listeEnv = [['definition','::: tip Définition ',':::'],
-['definitions','::: tip Définitions ',':::'],
+listeEnv = [['definition','::: warning Définition ',':::'],
+['definitions','::: warning Définitions ',':::'],
 ['remarque','::: tip Remarque ',':::'],
 ['remarques','::: tip Remarques ',':::'],
 ['exemple','::: tip Exemple ',':::'],
-['propriete','::: tip Propriété ',':::'],
+['propriete','::: warning Propriété ',':::'],
+['proprietes','::: warning Propriétés ',':::'],
+['theoreme','::: warning Théorème ',':::'],
+['methode','::: tip Méthode ',':::'],
+['exercice','::: tip Exercice ',':::'],
+['solution','::: tip Solution ',':::'],
+['preuve','::: tip Preuve ',':::'],
 ]
