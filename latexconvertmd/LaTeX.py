@@ -281,4 +281,4 @@ class Source:
         self.cleanLayout()
         self.replaceCommandSimple()
         self.replaceText()
-        self.cleanLine()
+        self.cleanLines()
