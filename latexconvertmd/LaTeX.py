@@ -36,6 +36,25 @@ class Source:
             line = line.strip()
             new_lines.append(line)
         self.lines = new_lines
+
+    def cleanRem(self):
+        """Agit sur les lignes.
+        Enlèves toutes les remarques %"""
+        self.collapseLines() #On commence par protégéer les \%
+        self.contenu = self.contenu.replace("\\%","!!rem!!")
+        self.lines = self.contenu.splitlines()
+        new_lines = []
+        for line in self.lines:
+            remarque = line.find("%")
+            if remarque != -1:
+                line = line[:remarque]
+            new_lines.append(line)
+        self.lines = new_lines
+        self.collapseLines()
+        self.contenu = self.contenu.replace("!!rem!!","\\%")
+        self.lines = self.contenu.splitlines()
+
+        
     
     def cleanLines(self):
         """Agit sur le contenu.
@@ -273,6 +292,7 @@ class Source:
         """Effectue les taches de conversion"""
         # Opérations sur les lignes
         self.cleanSpace()
+        self.cleanRem()
         self.findPstricks()
         self.findTikz()
         self.findTab()
