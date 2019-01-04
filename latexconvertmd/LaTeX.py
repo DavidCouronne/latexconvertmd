@@ -181,15 +181,7 @@ class Source:
     def replacePstricks(self):
         if len(self.pstricks) == 0:
             return
-        preamble = r"""\documentclass{standalone}
-\usepackage{pst-plot,pst-tree,pstricks,pst-node,pst-text}
-\usepackage{pst-eucl}
-\usepackage{pstricks-add}
-\usepackage[frenchb]{babel}
-\newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
-\begin{document}
-
-"""
+        preamble = config.TEX_HEADER
         
         for figure in self.pstricks:
             self.nbfigure = self.nbfigure + 1
@@ -198,7 +190,7 @@ class Source:
             f.write(total)
             f.close()
             os.system("latex temp.tex")
-            os.system("magick convert temp.dvi stemp.svg")
+            os.system("dvisvgm temp")
             try:
                 os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
             except:
@@ -210,25 +202,7 @@ class Source:
     def replaceTikz(self):
         if len(self.tikz) == 0:
             return
-        preamble = r"""\documentclass{standalone}
-\usepackage{apmep}
-\usepackage{dcmaths}
-\usepackage{dccornouaille}
-\usepackage{dctikz}
-\usepackage{dccours}
-\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
-% l' unité
-\newcommand{\myunit}{1 cm}
-\tikzset{
-    node style sp/.style={draw,circle,minimum size=\myunit},
-    node style ge/.style={circle,minimum size=\myunit},
-    arrow style mul/.style={draw,sloped,midway,fill=white},
-    arrow style plus/.style={midway,sloped,fill=white},
-}
-\newcommand{\touchecalc}[1]{\fbox{#1}}
-\begin{document}
-
-"""
+        preamble = config.TEX_HEADER
         
         for figure in self.tikz:
             self.nbfigure = self.nbfigure + 1
@@ -237,7 +211,7 @@ class Source:
             f.write(total)
             f.close()
             os.system("latex temp.tex")
-            os.system("magick convert temp.dvi temp.svg")
+            os.system("dvisvgm temp")
             try:
                 os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
             except:
