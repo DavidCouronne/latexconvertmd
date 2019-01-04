@@ -176,7 +176,25 @@ class Source:
                     in_tikz = True
                     lignes_tikz.append(line)
         self.tikz = tikz
-        print(self.tikz)
+    def findTab(self):
+        """Agit sur les lignes.
+        Essaie de trouver les envir
+        onnements tab..."""
+        in_tab = False
+        lignes_tab = []
+        tab = []
+        for line in self.lines:
+            if in_tab:
+                lignes_tab.append(line)
+                if r"\end{tab" in line:
+                    in_tab = False
+                    tikz.append("\n".join(lignes_tab))
+                    lignes_tab = []
+            else:
+                if r"\begin{tab" in line:
+                    in_tab = True
+                    lignes_tab.append(line)
+        self.tab = tab
 
     def replacePstricks(self):
         if len(self.pstricks) == 0:
@@ -219,6 +237,27 @@ class Source:
             self.contenu = self.contenu.replace(
                 figure,
                 '![Image](./figure'+str(self.nbfigure)+".svg)")
+    
+    def replaceTab(self):
+        if len(self.tab) == 0:
+            return
+        preamble = config.TEX_HEADER
+        
+        for figure in self.tab:
+            self.nbfigure = self.nbfigure + 1
+            total = preamble + figure + r"\end{document}"
+            f = codecs.open("temp.tex", "w", "utf-8")
+            f.write(total)
+            f.close()
+            os.system("latex temp.tex")
+            os.system("dvisvgm temp")
+            try:
+                os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
+            except:
+                print("Le fichier figure"+str(self.nbfigure)+".svg existe déjà")
+            self.contenu = self.contenu.replace(
+                figure,
+                '![Image](./figure'+str(self.nbfigure)+".svg)")
 
     def checkEnv(self):
         for arg in config.listeEnv:
@@ -236,11 +275,13 @@ class Source:
         self.cleanSpace()
         self.findPstricks()
         self.findTikz()
-        #Convertion figures
+        self.findTab()
+        #Convertion figures et tabular
         self.collapseLines()
         self.replacePstricks()
         self.replaceTikz()
-        #Enuemrate et Itemize
+        self.replaceTab()
+        #Enumerate et Itemize
         self.lines = self.contenu.splitlines()
         self.convertEnumerate()
         self.convertItemize()
