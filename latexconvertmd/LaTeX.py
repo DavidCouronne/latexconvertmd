@@ -256,6 +256,29 @@ class Source:
             self.contenu = self.contenu.replace(
                 figure,
                 '![Image](./figure'+str(self.nbfigure)+".svg)")
+
+    def processGraphics(self):
+        """Remplace les \includegraphics"""
+        if "includegraphics" in self.contenu:
+            graphic = self.contenu.split(r"\includegraphics")
+            self.contenu = graphic[0]
+            for i in range(len(graphic)-1):
+                apres = graphic[i+1]
+                #apres = apres[apres.find("{")+1:]
+                commande = "\\includegraphics"+apres[:apres.find("}")+1]
+                self.nbfigure = self.nbfigure + 1
+                total = config.TEX_HEADER + commande + r"\end{document}"
+                f = codecs.open("temp.tex", "w", "utf-8")
+                f.write(total)
+                f.close()
+                os.system("latex temp.tex")
+                os.system("dvisvgm temp")
+                try:
+                    os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
+                except:
+                    print("Le fichier figure"+str(self.nbfigure)+".svg existe déjà")
+                apres = apres[apres.find("}")+1:]
+                self.contenu = self.contenu + ' ![Image](./figure'+str(self.nbfigure)+".svg) "+apres
     
     def replaceTab(self):
         if len(self.tab) == 0:
@@ -301,6 +324,7 @@ class Source:
         self.replacePstricks()
         self.replaceTikz()
         self.replaceTab()
+        self.processGraphics()
         #Enumerate et Itemize
         self.lines = self.contenu.splitlines()
         self.convertEnumerate()
