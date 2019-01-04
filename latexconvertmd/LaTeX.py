@@ -188,7 +188,7 @@ class Source:
                 lignes_tab.append(line)
                 if r"\end{tab" in line:
                     in_tab = False
-                    tikz.append("\n".join(lignes_tab))
+                    tab.append("\n".join(lignes_tab))
                     lignes_tab = []
             else:
                 if r"\begin{tab" in line:
