@@ -198,7 +198,7 @@ class Source:
             f.write(total)
             f.close()
             os.system("latex temp.tex")
-            os.system("dvisvgm temp")
+            os.system("magick convert temp.dvi stemp.svg")
             try:
                 os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
             except:
@@ -237,7 +237,7 @@ class Source:
             f.write(total)
             f.close()
             os.system("latex temp.tex")
-            os.system("dvisvgm temp")
+            os.system("magick convert temp.dvi temp.svg")
             try:
                 os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
             except:
