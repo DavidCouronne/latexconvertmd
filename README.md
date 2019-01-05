@@ -1,7 +1,7 @@
 # LaTeXConvertMD
 Script Python pour convertir du LaTeX en Markdown
 
-[![Releases](https://img.shields.io/github/release/DavidCouronne/latexconvertmd.svg)](https://github.com/DavidCouronne/latexconvertmd/tree/v0.0.7)
+![](https://img.shields.io/github/license/DavidCouronne/latexconvertmd.svg)
 
 version 0.0.7
 
