@@ -22,7 +22,7 @@ module.exports = {
       sidebarDepth: 3,
       nav: [
         { text: 'Accueil', link: '/' },
-        { text: 'Guide', link: '/docs/guide/' },  
+        { text: 'Guide', link: '/guide/' },  
       ],
       sidebar: {
         '/docs/maths/sujets/2018-nvellecaledonie/': [
