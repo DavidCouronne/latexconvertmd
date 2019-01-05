@@ -22,7 +22,8 @@ module.exports = {
       sidebarDepth: 3,
       nav: [
         { text: 'Accueil', link: '/' },
-        { text: 'Guide', link: '/guide/' },  
+        { text: 'Guide', link: '/guide/' },
+        { text: 'Katex', link: '/katex/' },  
       ],
       sidebar: {
         '/docs/maths/sujets/2018-nvellecaledonie/': [
