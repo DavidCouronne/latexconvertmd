@@ -3,14 +3,13 @@
 # Auteur: David Couronné
 # Convertion automatique de LaTeX en Markdown
 
-import re
-import os
 import codecs
-
-from TexSoup import TexSoup
-from slugify import slugify
+import os
+import re
 
 from latexconvertmd import LaTeXCommands, config
+from slugify import slugify
+from TexSoup import TexSoup
 
 
 class Source:
@@ -69,10 +68,6 @@ class Source:
             section.replace('## '+section.string)
         for subsection in soup.find_all('subsection'):
             subsection.replace('### '+subsection.string)
-        for widehat in soup.find_all('widehat'):
-            widehat.replace(widehat.string)
-        for vect in soup.find_all('vect'):
-            vect.replace('\\overrightarrow{'+vect.string+'}')
         for command in config.delCommands:
             for include in soup.find_all(command):
                 include.delete()
@@ -144,8 +139,6 @@ class Source:
     def convertItemize(self):
         """Agit sur les lignes.
         Converti les environnements itemize en listes html"""
-        level_itemize = 0
-        level_item = 0
         new_lines = []
 
         for line in self.lines:

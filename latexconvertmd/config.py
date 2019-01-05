@@ -6,7 +6,6 @@ import re
 
 from latexconvertmd import LaTeXCommands
 
-
 # Default output folder,name end figure
 
 outputFolder = "export-md"
@@ -15,6 +14,7 @@ outputFigure = "figure"
 
 # Commandes à supprimer avec TexSoup
 delCommands = ['vspace',
+               'ref'
                'arraycolsep',
                'label',
                'renewcommand',
@@ -65,10 +65,12 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                     1]],
                 [LaTeXCommands.LaTeXCommand("\\textsc", 1), [
                     1]],
-                #[LaTeXCommands.LaTeXCommand("\\vect", 1), [
-                # '\\overrightarrow', 1, '} }']],
-                #[LaTeXCommands.LaTeXCommand("\\vectt", 1), [
-                # '\\overrightarrow', 1, '} }']],
+                [LaTeXCommands.LaTeXCommand("\\widehat", 1), [
+                    1]],
+                [LaTeXCommands.LaTeXCommand("\\vect", 1), [
+                 '\\overrightarrow{', 1, '}']],
+                [LaTeXCommands.LaTeXCommand("\\vectt", 1), [
+                 '\\overrightarrow{', 1, '}']],
                 [LaTeXCommands.LaTeXCommand("\\fexo", 3), [
                  '# ', 2, '\n']],
                 ]
@@ -98,10 +100,10 @@ listeReplaceText = [["\\,\\%", "%"],
                     ["\\end{center}", "\n"],
                     ["~", ""],
                     ["\\begin{flushleft}", ""],
-                    ["\\end{flushleft}", ""],                    
+                    ["\\end{flushleft}", ""],
                     ["\\end{document}", ""],
-                    ["\\newline","\n\n"],                    
-                    ["\\'e","é"],
+                    ["\\newline", "\n\n"],
+                    ["\\'e", "é"],
 
                     ]
 
@@ -122,7 +124,7 @@ listeEnv = [['definition', '::: warning Définition ', ':::'],
             ['preuve', '::: tip Preuve ', ':::'],
             ]
 
-#Tex Header
+# Tex Header
 TEX_HEADER = r"""\documentclass{standalone}
 \usepackage{apmep}
 \usepackage{dcmaths}
