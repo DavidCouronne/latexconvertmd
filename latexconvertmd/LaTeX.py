@@ -14,7 +14,7 @@ from latexconvertmd import LaTeXCommands, config
 
 
 class Source:
-    def __init__(self, original="", exportFolder = config.outputFolder, file = False):
+    def __init__(self, original="", exportFolder=config.outputFolder, file=False):
         self.original = original  # On garde l'original pour développement
         self.contenu = original
         self.lines = self.contenu.splitlines()
@@ -40,8 +40,8 @@ class Source:
     def cleanRem(self):
         """Agit sur les lignes.
         Enlèves toutes les remarques %"""
-        self.collapseLines() #On commence par protégéer les \%
-        self.contenu = self.contenu.replace("\\%","!!rem!!")
+        self.collapseLines()  # On commence par protégéer les \%
+        self.contenu = self.contenu.replace("\\%", "!!rem!!")
         self.lines = self.contenu.splitlines()
         new_lines = []
         for line in self.lines:
@@ -51,16 +51,14 @@ class Source:
             new_lines.append(line)
         self.lines = new_lines
         self.collapseLines()
-        self.contenu = self.contenu.replace("!!rem!!","\\%")
+        self.contenu = self.contenu.replace("!!rem!!", "\\%")
         self.lines = self.contenu.splitlines()
 
-        
-    
     def cleanLines(self):
         """Agit sur le contenu.
         Supprime les lignes vides"""
         while "\n\n\n" in self.contenu:
-            self.contenu = self.contenu.replace("\n\n\n","\n\n")
+            self.contenu = self.contenu.replace("\n\n\n", "\n\n")
 
     def cleanCommand(self):
         """Agit sur le contenu.
@@ -75,8 +73,8 @@ class Source:
             widehat.replace(widehat.string)
         for vect in soup.find_all('vect'):
             vect.replace('\\overrightarrow{'+vect.string+'}')
-        for command in config.delCommands: 
-            for include in soup.find_all(command):       
+        for command in config.delCommands:
+            for include in soup.find_all(command):
                 include.delete()
         self.contenu = repr(soup)
         for command in config.listeCommandesClean:
@@ -131,7 +129,7 @@ class Source:
                     enumi = 0
                 level_enumerate = level_enumerate - 1
                 line = ""
-            elif r"\item" in line and level_enumerate !=0:
+            elif r"\item" in line and level_enumerate != 0:
                 if level_enumerate == 1:
                     enumi = enumi + 1
                     line = line.replace(r"\item", str(enumi)+". ")
@@ -199,6 +197,7 @@ class Source:
                     in_tikz = True
                     lignes_tikz.append(line)
         self.tikz = tikz
+
     def findTab(self):
         """Agit sur les lignes.
         Essaie de trouver les envir
@@ -223,7 +222,7 @@ class Source:
         if len(self.pstricks) == 0:
             return
         preamble = config.TEX_HEADER
-        
+
         for figure in self.pstricks:
             self.nbfigure = self.nbfigure + 1
             total = preamble + figure + r"\end{document}"
@@ -239,12 +238,12 @@ class Source:
             self.contenu = self.contenu.replace(
                 figure,
                 '![Image](./figure'+str(self.nbfigure)+".svg)")
-    
+
     def replaceTikz(self):
         if len(self.tikz) == 0:
             return
         preamble = config.TEX_HEADER
-        
+
         for figure in self.tikz:
             self.nbfigure = self.nbfigure + 1
             total = preamble + figure + r"\end{document}"
@@ -280,15 +279,45 @@ class Source:
                 try:
                     os.rename("temp.png", "figure"+str(self.nbfigure)+".png")
                 except:
-                    print("Le fichier figure"+str(self.nbfigure)+".png existe déjà")
+                    print("Le fichier figure" +
+                          str(self.nbfigure)+".png existe déjà")
                 apres = apres[apres.find("}")+1:]
-                self.contenu = self.contenu + ' ![Image](./figure'+str(self.nbfigure)+".png) "+apres
-    
+                self.contenu = self.contenu + \
+                    ' ![Image](./figure'+str(self.nbfigure)+".png) "+apres
+
+    def processTab(self, intab):
+        """Convertit le contenu d'un tabular ou tabularx en Markdown"""
+        tableau = ""
+        delemiteur = ""
+        if "&" in intab:
+            intab = intab.replace("\\hline", '')
+            lines = intab.split("\n")
+            newlines = []
+            for line in lines:
+                if line == '':
+                    pass
+                else:
+                    nbRow = line.count('&')
+                    line = line.replace("\\\\", '').replace("&", " | ")
+                    line = "| " + line + " |"
+                    newlines.append(line)
+                    delemiteur = ""
+                    for i in range(nbRow + 1):
+                        delemiteur = delemiteur + "|---"
+                    delemiteur = delemiteur + "|"
+
+            for i in range(len(newlines)):
+                if i == 1:
+                    tableau = tableau + delemiteur + "\n"+newlines[1] + "\n"
+                else:
+                    tableau = tableau + newlines[i] + "\n"
+        return tableau
+
     def replaceTab(self):
         if len(self.tab) == 0:
             return
         preamble = config.TEX_HEADER
-        
+
         for figure in self.tab:
             self.nbfigure = self.nbfigure + 1
             total = preamble + figure + r"\end{document}"
@@ -311,9 +340,8 @@ class Source:
             print(begin, begin in self.contenu)
             print(arg[1])
             end = "\\end{"+arg[0]+"}"
-            self.contenu = self.contenu.replace(begin,arg[1])
-            self.contenu = self.contenu.replace(end,arg[2])
-
+            self.contenu = self.contenu.replace(begin, arg[1])
+            self.contenu = self.contenu.replace(end, arg[2])
 
     def process(self):
         """Effectue les taches de conversion"""
@@ -323,17 +351,17 @@ class Source:
         self.findPstricks()
         self.findTikz()
         self.findTab()
-        #Convertion figures et tabular
+        # Convertion figures et tabular
         self.collapseLines()
         self.replacePstricks()
         self.replaceTikz()
         self.replaceTab()
         self.processGraphics()
-        #Enumerate et Itemize
+        # Enumerate et Itemize
         self.lines = self.contenu.splitlines()
         self.convertEnumerate()
         self.convertItemize()
-        
+
         # Opérations sur le contenu
         self.collapseLines()
         self.checkEnv()
