@@ -25,7 +25,7 @@ $\sqrt{2} $
 
 $\sqrt{2} $
 
-La convertion automatique avec `latexconvertmd` ne gère pas (encore) ce genre de situations.
+La convertion automatique avec `latexconvertmd` ne gère pas (encore) ce genre de situation.
 
 ::: tip Astuce
 On peut "passer à la ligne" !
@@ -44,25 +44,25 @@ $f(x)=(x-1)(x+2)\\
 ## Maths en block
 
 ```  md
-$$\lim{x \to +\infty \frac{1}{x}=0}$$
+$$\lim_{x \to +\infty \frac{1}{x}=0}$$
 ```
 
-$$\lim{x \to +\infty \frac{1}{x}=0}$$
+$$\lim_{x \to +\infty \frac{1}{x}=0}$$
 
 ::: warning Attention
 Ne rien mettre avant ou après les $$
 :::
 
-Exemples:
+Exemple:
+
+
 
 ```  md
-$$\lim{x \to +\infty \frac{1}{x}=0} $$
+$$\lim_{x \to +\infty \frac{1}{x}=0}$$.
 ```
 
-$$\lim{x \to +\infty \frac{1}{x}=0} $$
+$$\lim_{x \to +\infty \frac{1}{x}=0}$$.
 
-```  md
-$$\lim{x \to +\infty \frac{1}{x}=0}$$.
-```
+Le problème vient du petit point après les $$ !!!
 
-$$\lim{x \to +\infty \frac{1}{x}=0}$$.
+La convertion automatique avec `latexconvertmd` ne gère pas (encore) ce genre de situation.
