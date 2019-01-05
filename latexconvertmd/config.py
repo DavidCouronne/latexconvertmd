@@ -41,6 +41,8 @@ listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourleft", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourright", 0),
                        LaTeXCommands.LaTeXCommand(r"\\tableofcontents", 0),
+                       LaTeXCommands.LaTeXCommand(r"\\strut", 0),
+                       LaTeXCommands.LaTeXCommand(r"\\arraycolsep", 0),
                        ]
 # Commandes de mise en page ou de glue avec plusieurs arguments à supprimer
 listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\addtolength", 2)]
@@ -96,11 +98,10 @@ listeReplaceText = [["\\,\\%", "%"],
                     ["\\end{center}", "\n"],
                     ["~", ""],
                     ["\\begin{flushleft}", ""],
-                    ["\\end{flushleft}", ""],
-                    ["\\strut", ""],
+                    ["\\end{flushleft}", ""],                    
                     ["\\end{document}", ""],
-                    ["\\newline","\n\n"],
-                    ["\\arraycolsep",""],
+                    ["\\newline","\n\n"],                    
+                    ["\\'e","é"],
 
                     ]
 
