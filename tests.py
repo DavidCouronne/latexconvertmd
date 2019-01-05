@@ -4,7 +4,7 @@ import os
 
 print(os.path.join(os.getcwd(),"test"))
 os.chdir(os.path.join(os.getcwd(),"tests"))
-file = "TS-Spe-C2-Cours-impression.tex"
+file = "TS-G1-cours-2.tex"
 
 with codecs.open(file, "r", "utf-8") as f:
     data = f.read()
