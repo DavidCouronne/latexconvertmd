@@ -16,12 +16,12 @@ class Source:
     def __init__(self, original="", exportFolder=config.outputFolder, file=False):
         self.original = original  # On garde l'original pour développement
         self.contenu = original
+        self.manipFiles = True
         self.lines = self.contenu.splitlines()
         self.exportFolder = exportFolder
         self.nbfigure = 0
         if file != False:
             self.outputFolder = slugify(file)
-        print(self.exportFolder)
 
     def collapseLines(self):
         """Recolle les lignes dans self.contenu"""
@@ -92,8 +92,7 @@ class Source:
         """Agit sur le contenu.
         Remplace toutes les commande de listeReplace de config.py"""
         for command, arg in config.listeReplace:
-            #print("commande", command)
-            #print("arg", arg)
+
             self.contenu = command.replaceCommand(self.contenu, arg)
 
     def replaceText(self):
@@ -282,29 +281,41 @@ class Source:
         """Convertit le contenu d'un tabular ou tabularx en Markdown"""
         tableau = ""
         delemiteur = ""
-        if "&" in intab:
-            intab = intab.replace("\\hline", '')
-            lines = intab.split("\n")
-            newlines = []
-            for line in lines:
-                if line == '':
-                    pass
-                else:
-                    nbRow = line.count('&')
-                    line = line.replace("\\\\", '').replace("&", " | ")
-                    line = "| " + line + " |"
-                    newlines.append(line)
-                    delemiteur = ""
-                    for i in range(nbRow + 1):
-                        delemiteur = delemiteur + "|---"
-                    delemiteur = delemiteur + "|"
 
-            for i in range(len(newlines)):
-                if i == 1:
-                    tableau = tableau + delemiteur + "\n"+newlines[1] + "\n"
-                else:
-                    tableau = tableau + newlines[i] + "\n"
+        intab = intab.replace("\\hline", '')
+        lines = intab.split("\n")
+        newlines = []
+        for line in lines:
+            if line == '':
+                pass
+            else:
+                nbRow = line.count('&')
+                line = line.replace("\\\\", '').replace("&", " | ")
+                line = "| " + line + " |"
+                newlines.append(line)
+                delemiteur = ""
+                for i in range(nbRow + 1):
+                    delemiteur = delemiteur + "|---"
+                delemiteur = delemiteur + "|"
+
+        for i in range(len(newlines)):
+            if i == 1:
+                tableau = tableau + delemiteur + "\n"+newlines[1] + "\n"
+            else:
+                tableau = tableau + newlines[i] + "\n"
         return tableau
+
+    def soupTab(self):
+        """Utilise TexSoup pour tabular et tabularx"""
+        soup = TexSoup(self.contenu)
+        for tabu in soup.find_all('tabular'):
+            print(tabu)
+            arg = []
+            for i in tabu.contents:
+                arg.append(str(i))
+            intab = "".join(arg)
+            tableau = self.processTab(intab)
+            self.contenu = self.contenu.replace(repr(tabu), tableau)
 
     def replaceTab(self):
         if len(self.tab) == 0:
@@ -330,8 +341,6 @@ class Source:
     def checkEnv(self):
         for arg in config.listeEnv:
             begin = "\\begin{"+arg[0]+"}"
-            print(begin, begin in self.contenu)
-            print(arg[1])
             end = "\\end{"+arg[0]+"}"
             self.contenu = self.contenu.replace(begin, arg[1])
             self.contenu = self.contenu.replace(end, arg[2])
@@ -344,12 +353,14 @@ class Source:
         self.findPstricks()
         self.findTikz()
         self.findTab()
-        # Convertion figures et tabular
+        # Convertion tabular
         self.collapseLines()
-        self.replacePstricks()
-        self.replaceTikz()
-        self.replaceTab()
-        self.processGraphics()
+        self.soupTab()
+        # Convertion PsTricks TikZ Images
+        if self.manipFiles:
+            self.replacePstricks()
+            self.replaceTikz()
+            self.processGraphics()
         # Enumerate et Itemize
         self.lines = self.contenu.splitlines()
         self.convertEnumerate()
