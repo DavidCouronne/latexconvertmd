@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "vuepress": "^0.14.8"
+  },
+  "dependencies": {
+    "katex": "^0.10.0",
+    "vuetify": "^1.4.0"
   }
 }

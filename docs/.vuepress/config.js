@@ -51,12 +51,10 @@ module.exports = {
       
     },
     
-    /* markdown: {
+    markdown: {
       lineNumbers: false,
       config: md => {
-        var mf = require('markdown-it-footnote');
         md.use(require('./param-katex'));
-        md.use(mf);
       }
-    } */
+    } 
   }
