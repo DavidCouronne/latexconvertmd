@@ -20,6 +20,7 @@ delCommands = ['vspace',
                'renewcommand',
                'hspace',
                'parindent',
+               'raisebox',
                'rhead',
                'lhead',
                'lfoot',
@@ -62,10 +63,10 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                     1]],
                 [LaTeXCommands.LaTeXCommand("\\textsc", 1), [
                     1]],
-                [LaTeXCommands.LaTeXCommand("\\vect", 1), [
-                 '\\overrightarrow', 1, '} }']],
-                [LaTeXCommands.LaTeXCommand("\\vectt", 1), [
-                 '\\overrightarrow', 1, '} }']],
+                #[LaTeXCommands.LaTeXCommand("\\vect", 1), [
+                # '\\overrightarrow', 1, '} }']],
+                #[LaTeXCommands.LaTeXCommand("\\vectt", 1), [
+                # '\\overrightarrow', 1, '} }']],
                 [LaTeXCommands.LaTeXCommand("\\fexo", 3), [
                  '# ', 2, '\n']],
                 ]
