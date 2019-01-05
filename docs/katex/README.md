@@ -1,6 +1,8 @@
 ---
+author: David Couronné
+title: Guide katex
+description: katex, latexconvertmd, utilisation katex, markdown
 sidebar: auto
-title: Guide Katex
 ---
 
 # Syntaxe de base
