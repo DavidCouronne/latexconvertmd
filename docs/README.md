@@ -1,5 +1,6 @@
 ---
 home: true
+title: LaTeXConvertMD
 heroText: LaTeXConvertMD
 tagline: Convertisseur Python de LaTeX vers Markdown (Katex)
 actionText: C'est parti ! →
