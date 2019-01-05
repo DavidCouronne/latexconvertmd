@@ -34,3 +34,4 @@ $f(x)=(x+3)^2
 $f(x)=(x+3)^2
 =x^2+6x+9$
 
+La convertion automatique avec `latexconvertmd` ne gère pas (encore) ce genre de situations.
