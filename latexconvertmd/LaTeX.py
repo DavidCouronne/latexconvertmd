@@ -71,6 +71,10 @@ class Source:
             section.replace('## '+section.string)
         for subsection in soup.find_all('subsection'):
             subsection.replace('### '+subsection.string)
+        for widehat in soup.find_all('widehat'):
+            widehat.replace(widehat.string)
+        for vect in soup.find_all('vect'):
+            vect.replace('\\overrightarrow{'+vect.string+'}')
         for command in config.delCommands: 
             for include in soup.find_all(command):       
                 include.delete()
