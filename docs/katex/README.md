@@ -77,10 +77,12 @@ Katex n'est pas LaTeX !!!
 
 KaTeX est juste un moteur de rendu des environnements mathématiques en Markdown ou HTML. Mais ce n'est pas le compilateur LaTeX :)
 
-1. Trop d'accolades
-``` md
-$\frac{{2}}{3}$
+
+1. Mieux vaut `matrix`que `array`
+2. Katex n'aime pas le surplus d'accolades
+
+```md
+$\frac{{5}\pi}{{6}}}$
 ```
 Ca fait planter Katex...
 
-2. Mieux vaut `matrix`que `array`

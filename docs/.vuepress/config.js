@@ -8,8 +8,8 @@ module.exports = {
   
   
     themeConfig: {
-      repo: 'DavidCouronne/mathssyfy',
-      docsDir: 'mathssyfy',
+      repo: 'DavidCouronne/latexconvertmd',
+      docsDir: 'docs',
       editLinks: true,
       editLinkText: 'Edit this page on GitHub',
       

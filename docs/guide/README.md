@@ -24,6 +24,10 @@ python -m pip install --index-url https://test.pypi.org/simple/ latexconvertmd -
 
 ## Principes
 
+### Encodage UTF-8
+
+La consersion assume que le fichier source est encodé en UTF-8. Le ou les exports sont aussi en UTF-8.
+
 ### Nettoyage du fichier LaTeX
 
 + Les "mises en forme", comme \vspace, \hspace, \hfill, etc... sont efacées
