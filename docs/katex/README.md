@@ -68,3 +68,19 @@ Le problème vient du petit point après les $$ !!!
 
 
 La convertion automatique avec `latexconvertmd` ne gère pas (encore) ce genre de situation.
+
+## Problèmes rencontrés
+
+::: danger
+Katex n'est pas LaTeX !!!
+:::
+
+KaTeX est juste un moteur de rendu des environnements mathématiques en Markdown ou HTML. Mais ce n'est pas le compilateur LaTeX :)
+
+1. Trop d'accolades
+``` md
+$\frac{{2}}{3}$
+```
+Ca fait planter Katex...
+
+2. Mieux vaut `matrix`que `array`
