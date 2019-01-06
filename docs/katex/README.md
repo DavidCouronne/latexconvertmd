@@ -345,4 +345,32 @@ module.exports = function math_plugin(md, options) {
 ```
 Au passage j'ai mis `throwOnError = false` pour bien voir les erreurs de rendu.
 
+Reste à l'implémenter:
+
+```js
+var md = require('markdown-it')(),
+    mk = require('./param-katex'); //Chemin du dossier param-katex
+
+md.use(mk);
+```
+
+Ne pas oublier d'ajouter katex au `package.json`
+
+```bash
+yarn add katex
+```
+
+Et le lien qui va bien pous le CSS:
+
+```html
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css"
+      integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y"
+      crossorigin="anonymous"
+/>
+```
+Bien sûr on ne peut avoir les mises à jour de markdown-it-katex, mais comme la dernière date de 2016... :)
+
+`Latest commit 81b84a7 on 10 Oct 2016`
 
