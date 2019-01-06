@@ -40,3 +40,15 @@ Tous les environnements PsStricks et Tikz sont extraits du fichier source, empaq
 ### Environnements mathématiques
 
 Les environnements mathématiques sont laissés tel quel, à quelques exeptions près. Le rendu a été testé avec _Katex v0.10.0_. Si vous utilisez _MathJax_ ou un autre moteur de rendu, les résultats peuvent être différents.
+
+### Possibilité de forcer la convertion en svg
+
+Si une partie du code LaTeX ne peut être convertie "simplement" en Markdown, il est possible de marquer dans le fichier source les parties du code à compiler avec LaTeX puis convertir en _svg_.
+
+### Les input et include sont intégrés
+
+Par défaut, tous les _input_ et _include_ sont intégrés dans le Source. Par défaut aussi, si un des fichiers n'est pas trouvé, le _include_ ou _input_ est laissé tel quel.
+
+### tabular et tabularx
+
+Les tableaux
