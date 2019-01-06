@@ -389,4 +389,5 @@ class Source:
         self.replaceCommandSimple()
         self.replaceText()
         self.contenu = self.contenu.replace("{}", "")
+        self.contenu = self.contenu.replace("[ ]", "")
         self.cleanLines()
