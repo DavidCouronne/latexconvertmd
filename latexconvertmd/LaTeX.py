@@ -16,10 +16,11 @@ class Source:
     def __init__(self, original="", exportFolder=config.outputFolder, file=False):
         self.original = original  # On garde l'original pour développement
         self.contenu = original
-        self.manipFiles = True
+        self.manipFiles = True # Manipulation de fichiers
         self.lines = self.contenu.splitlines()
         self.exportFolder = exportFolder
         self.nbfigure = 0
+        self.exo = 0
         if file != False:
             self.outputFolder = slugify(file)
 
@@ -344,6 +345,18 @@ class Source:
             end = "\\end{"+arg[0]+"}"
             self.contenu = self.contenu.replace(begin, arg[1])
             self.contenu = self.contenu.replace(end, arg[2])
+    
+    def convertExos(self):
+        self.contenu = self.contenu.replace('\\end{exercice}',':::\n\n')
+        self.lines = self.contenu.split('\n')
+        newlines = []
+        for line in self.lines:
+            if "\\begin{exercice}" in line:
+                self.exo = self.exo + 1
+                line = line.replace('\\begin{exercice}','::: tip Exercice '+str(self.exo)+' ')
+            newlines.append(line)
+        self.lines = newlines
+        self.collapseLines()
 
     def process(self):
         """Effectue les taches de conversion"""
@@ -368,6 +381,7 @@ class Source:
 
         # Opérations sur le contenu
         self.collapseLines()
+        self.convertExos()
         self.checkEnv()
         self.cleanCommand()
         self.replaceCommand()

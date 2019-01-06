@@ -106,7 +106,9 @@ listeReplaceText = [["\\,\\%", "%"],
                     ["\\'e", "é"],
                     ["\\`A", "A"],
                     ["\\begin{equation*}","$$\\begin{matrix}"],
-                    ["\\end{equation*}","\\end{matrix}$$"]
+                    ["\\end{equation*}","\\end{matrix}$$"],
+                    ["\\begin{equation}","$$\\begin{matrix}"],
+                    ["\\end{equation}","\\end{matrix}$$"],
 
                     ]
 
@@ -123,7 +125,7 @@ listeEnv = [['definition', '::: warning Définition ', ':::'],
             ['theoreme', '::: warning Théorème ', ':::'],
             ['methode', '::: tip Méthode ', ':::'],
             ['exercice', '::: tip Exercice ', ':::'],
-            ['solution', '<ClientOnly><Solution>', '</Solution>'], 
+            ['solution', '<ClientOnly><Solution>', '</Solution>\n\n'], 
             ['preuve', '::: tip Preuve ', ':::'],
             ]
 

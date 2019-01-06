@@ -15,7 +15,7 @@ texheader, document = data.split("\\begin{document}")
 latex = LaTeX.Source(document, file=file)
 
 #Tests sans agir sur les fichiers
-latex.manipFiles = False
+#latex.manipFiles = False
 latex.process()
 
 name = "README.md"
