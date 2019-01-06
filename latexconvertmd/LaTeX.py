@@ -113,10 +113,10 @@ class Source:
         arabic = "abcdefghijklmnopqrstuvwxz"
 
         for line in self.lines:
-            if r"\begin{enumerate}" in line:
+            if r"\begin{enumerate}" in line or r"\begin{colenumerate}" in line:
                 level_enumerate = level_enumerate + 1
                 line = ""
-            elif r"\end{enumerate}" in line:
+            elif r"\end{enumerate}" in line or r"\end{colenumerate}" in line:
                 if level_enumerate == 2:
                     enumii = 0
                 else:
