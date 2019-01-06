@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="latexconvertmd",
-    version="0.0.7",
+    version="0.0.8",
     author="David Couronné",
     author_email="couronne.david@gmail.com",
     description="Convertion LaTeX en Markdown",
