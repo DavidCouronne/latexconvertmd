@@ -170,6 +170,26 @@ class Source:
                     in_pstricks = True
                     lignes_pstricks.append(line)
         self.pstricks = pstricks
+    
+    def findConvert(self):
+        """Agit sur les lignes.
+        Essaie de trouver les envir
+        onnements Convert"""
+        in_convert = False
+        lignes_convert = []
+        convert = []
+        for line in self.lines:
+            if in_convert:
+                lignes_convert.append(line)
+                if r"\end{convert}" in line:
+                    in_convert = False
+                    convert.append("\n".join(lignes_convert))
+                    lignes_convert = []
+            else:
+                if r"\begin{convert}" in line:
+                    in_convert = True
+                    lignes_convert.append(line)
+        self.convert = convert
 
     def findTikz(self):
         """Agit sur les lignes.
@@ -217,6 +237,26 @@ class Source:
         preamble = config.TEX_HEADER
 
         for figure in self.pstricks:
+            self.nbfigure = self.nbfigure + 1
+            total = preamble + figure + r"\end{document}"
+            f = codecs.open("temp.tex", "w", "utf-8")
+            f.write(total)
+            f.close()
+            os.system("latex temp.tex")
+            os.system("dvisvgm temp")
+            try:
+                os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
+            except:
+                print("Le fichier figure"+str(self.nbfigure)+".svg existe déjà")
+            self.contenu = self.contenu.replace(
+                figure,
+                '![Image](./figure'+str(self.nbfigure)+".svg)")
+    def replaceConvert(self):
+        if len(self.convert) == 0:
+            return
+        preamble = config.TEX_HEADER
+
+        for figure in self.convert:
             self.nbfigure = self.nbfigure + 1
             total = preamble + figure + r"\end{document}"
             f = codecs.open("temp.tex", "w", "utf-8")
@@ -363,9 +403,13 @@ class Source:
         # Opérations sur les lignes
         self.cleanSpace()
         self.cleanRem()
+        self.findConvert()
+        if self.manipFiles:
+            self.replaceConvert()
         self.findPstricks()
         self.findTikz()
         self.findTab()
+
         # Convertion tabular
         self.collapseLines()
         self.soupTab()
@@ -390,4 +434,5 @@ class Source:
         self.replaceText()
         self.contenu = self.contenu.replace("{}", "")
         self.contenu = self.contenu.replace("[ ]", "")
+        #self.contenu = self.contenu.replace("\\\\", "\n\n")
         self.cleanLines()

@@ -14,7 +14,11 @@ outputFigure = "figure"
 
 # Commandes à supprimer avec TexSoup
 delCommands = ['vspace',
-               'ref'
+               #'renewcommand',
+               'setbar', 
+               #'esp',
+               'encadre',
+               'ref',
                'arraycolsep',
                'label',
                'renewcommand',
@@ -43,6 +47,9 @@ listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\tableofcontents", 0),
                        LaTeXCommands.LaTeXCommand(r"\\strut", 0),
                        LaTeXCommands.LaTeXCommand(r"\\arraycolsep", 0),
+                       LaTeXCommands.LaTeXCommand(r"\\Bareme", 0),
+                       #LaTeXCommands.LaTeXCommand(r"\\def", 0),
+                       LaTeXCommands.LaTeXCommand(r"\\vline", 0),
                        ]
 # Commandes de mise en page ou de glue avec plusieurs arguments à supprimer
 listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\addtolength", 2)]
@@ -73,8 +80,8 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                  '\\overrightarrow{', 1, '}']],
                 [LaTeXCommands.LaTeXCommand("\\fexo", 3), [
                  '# ', 2, '\n']],
-                 [LaTeXCommands.LaTeXCommand("\\cornouaille", 3), [
-                 '# ', 2, '\n']],
+                [LaTeXCommands.LaTeXCommand("\\cornouaille", 3), [
+                    '# ', 2, '\n']],
                 ]
 # Remplacement de commandes avec aucun argument ou commandes math.
 listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$, $\\vec{v}$)"],
@@ -94,7 +101,6 @@ listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$
 
 # Remplacement sans regex
 listeReplaceText = [["\\,\\%", "%"],
-                    #["\\\\", "\n\n"],
                     ["\\[", " $$ "],
                     ["\\]", " $$ "],
                     ["pspicture*", "pspicture"],
@@ -107,10 +113,11 @@ listeReplaceText = [["\\,\\%", "%"],
                     ["\\newline", "\n\n"],
                     ["\\'e", "é"],
                     ["\\`A", "A"],
-                    ["\\begin{equation*}","$$\\begin{matrix}"],
-                    ["\\end{equation*}","\\end{matrix}$$"],
-                    ["\\begin{equation}","$$\\begin{matrix}"],
-                    ["\\end{equation}","\\end{matrix}$$"],
+                    ["\\begin{equation*}", "$$\\begin{matrix}"],
+                    ["\\end{equation*}", "\\end{matrix}$$"],
+                    ["\\begin{equation}", "$$\\begin{matrix}"],
+                    ["\\end{equation}", "\\end{matrix}$$"],
+                    ["\\renewcommand", "\\newcommand"],
 
                     ]
 
@@ -125,8 +132,8 @@ listeEnv = [['definition', '::: warning Définition ', ':::'],
             ['propriete', '::: warning Propriété ', ':::'],
             ['proprietes', '::: warning Propriétés ', ':::'],
             ['theoreme', '::: warning Théorème ', ':::'],
-            ['methode', '::: tip Méthode ', ':::'],            
-            ['solution', '<ClientOnly><Solution>', '</Solution>\n\n'], 
+            ['methode', '::: tip Méthode ', ':::'],
+            ['solution', '<ClientOnly><Solution>', '</Solution>\n\n'],
             ['preuve', '::: tip Preuve ', ':::'],
             ]
 
@@ -169,6 +176,7 @@ TEX_HEADER = r"""\documentclass{standalone}
     arrow style plus/.style={midway,sloped,fill=white},
 }
 \newcommand{\touchecalc}[1]{\fbox{#1}}
+\newenvironment{convert}{}{}
 \begin{document}
 
 """
