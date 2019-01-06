@@ -1,7 +1,7 @@
 ---
 author: David Couronné
 title: Guide katex
-description: katex, latexconvertmd, utilisation katex, markdown
+description: markdown-it-katex, katex, latexconvertmd, utilisation katex, markdown
 sidebar: auto
 ---
 
@@ -134,7 +134,7 @@ Il y a surement moyent de faire plus simple avec des listes, mais je ne suis pas
 
 Le fichier `index.js`ve contenir le code de markdown-it-katex avec nos imports:
 
-```js {13,15}
+```js
 /* Process inline math */
 /*
 Like markdown-it-simplemath, this is a stripped down, simplified version of:
@@ -343,4 +343,6 @@ module.exports = function math_plugin(md, options) {
     md.renderer.rules.math_block = blockRenderer;
 };
 ```
+Au passage j'ai mis `throwOnError = false` pour bien voir les erreurs de rendu.
+
 
