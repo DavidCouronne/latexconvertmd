@@ -73,6 +73,8 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\boldmath", 1), [1]],
                  '\\overrightarrow{', 1, '}']],
                 [LaTeXCommands.LaTeXCommand("\\fexo", 3), [
                  '# ', 2, '\n']],
+                 [LaTeXCommands.LaTeXCommand("\\cornouaille", 3), [
+                 '# ', 2, '\n']],
                 ]
 # Remplacement de commandes avec aucun argument ou commandes math.
 listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$, $\\vec{v}$)"],
@@ -123,8 +125,7 @@ listeEnv = [['definition', '::: warning Définition ', ':::'],
             ['propriete', '::: warning Propriété ', ':::'],
             ['proprietes', '::: warning Propriétés ', ':::'],
             ['theoreme', '::: warning Théorème ', ':::'],
-            ['methode', '::: tip Méthode ', ':::'],
-            ['exercice', '::: tip Exercice ', ':::'],
+            ['methode', '::: tip Méthode ', ':::'],            
             ['solution', '<ClientOnly><Solution>', '</Solution>\n\n'], 
             ['preuve', '::: tip Preuve ', ':::'],
             ]
