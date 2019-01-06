@@ -22,6 +22,7 @@ name = "README.md"
 total = texheader + "\\begin{document}\n\n" + latex.contenu
 contenu = """---
 sidebar: auto
+author: David Couronné
 ---
 """ + latex.contenu
 f = codecs.open(name, "w", "utf-8")

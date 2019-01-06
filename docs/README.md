@@ -1,5 +1,6 @@
 ---
 home: true
+author: David Couronné
 title: LaTeXConvertMD
 heroText: LaTeXConvertMD
 tagline: Convertisseur Python de LaTeX vers Markdown (Katex)

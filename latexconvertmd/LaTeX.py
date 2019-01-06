@@ -251,7 +251,9 @@ class Source:
             self.contenu = self.contenu.replace(
                 figure,
                 '![Image](./figure'+str(self.nbfigure)+".svg)")
+
     def replaceConvert(self):
+        self.collapseLines()
         if len(self.convert) == 0:
             return
         preamble = config.TEX_HEADER
@@ -268,9 +270,11 @@ class Source:
                 os.rename("temp.svg", "figure"+str(self.nbfigure)+".svg")
             except:
                 print("Le fichier figure"+str(self.nbfigure)+".svg existe déjà")
+            print(figure)
             self.contenu = self.contenu.replace(
                 figure,
                 '![Image](./figure'+str(self.nbfigure)+".svg)")
+        self.lines = self.contenu.splitlines()
 
     def replaceTikz(self):
         if len(self.tikz) == 0:
