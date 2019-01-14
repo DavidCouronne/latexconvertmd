@@ -4,7 +4,7 @@ import os
 
 print(os.path.join(os.getcwd(),"test"))
 os.chdir(os.path.join(os.getcwd(),"tests"))
-file = "TS-DS4 exponentielle.tex"
+file = "TS-Prepa-BacBlanc-2018-complet.tex"
 
 with codecs.open(file, "r", "utf-8") as f:
     data = f.read()
