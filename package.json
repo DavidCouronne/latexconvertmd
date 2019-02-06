@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "prettier": "^1.16.4",
     "vuepress": "^0.14.8"
   },
   "dependencies": {

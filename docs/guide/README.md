@@ -9,13 +9,13 @@ sidebar: auto
 
 ## Dépendances
 
-+ dvisvg : à télécharger sur le site [https://dvisvgm.de/](https://dvisvgm.de/)
-+ Image Magick
-+ Python 3
-+ Une distribution LaTeX
-
+- dvisvg : à télécharger sur le site [https://dvisvgm.de/](https://dvisvgm.de/)
+- Image Magick
+- Python 3
+- Une distribution LaTeX
 
 ## Installation
+
 ```bash
 python -m pip install --index-url https://test.pypi.org/simple/ latexconvertmd --upgrade
 ```
@@ -28,10 +28,10 @@ La convertion assume que le fichier source est encodé en UTF-8. Le ou les expor
 
 ### Nettoyage du fichier LaTeX
 
-+ Les "mises en forme", comme \vspace, \hspace, \hfill, etc... sont effacées
-+ Les espaces ou tabulations en début de ligne sont retirés
-+ Les commentaires (%Mon commentaire...) sont effacés
-+ Les commandes de mise en page comme \lhead, \rhead, etc... sont effacées
+- Les "mises en forme", comme \vspace, \hspace, \hfill, etc... sont effacées
+- Les espaces ou tabulations en début de ligne sont retirés
+- Les commentaires (%Mon commentaire...) sont effacés
+- Les commandes de mise en page comme \lhead, \rhead, etc... sont effacées
 
 ### Convertion de PsStricks et TikZ
 

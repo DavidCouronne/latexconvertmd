@@ -14,9 +14,9 @@ outputFigure = "figure"
 
 # Commandes à supprimer avec TexSoup
 delCommands = ['vspace',
-               #'renewcommand',
-               'setbar', 
-               #'esp',
+               # 'renewcommand',
+               'setbar',
+               # 'esp',
                'encadre',
                'ref',
                'arraycolsep',
