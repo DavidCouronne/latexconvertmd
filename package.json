@@ -5,6 +5,6 @@
   },
   "dependencies": {
     "katex": "^0.10.0",
-    "vuetify": "^1.4.0"
+    "vuetify": "^2.1.9"
   }
 }
