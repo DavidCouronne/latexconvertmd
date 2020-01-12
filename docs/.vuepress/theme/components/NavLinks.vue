@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import DropdownLink from './DropdownLink.vue'
-import { resolveNavLinkItem } from './util'
-import NavLink from './NavLink.vue'
+import DropdownLink from '@theme/components/DropdownLink.vue'
+import { resolveNavLinkItem } from '../util'
+import NavLink from '@theme/components/NavLink.vue'
 
 export default {
   components: { NavLink, DropdownLink },
@@ -54,6 +54,7 @@ export default {
         const themeLocales = this.$site.themeConfig.locales || {}
         const languageDropdown = {
           text: this.$themeLocaleConfig.selectText || 'Languages',
+          ariaLabel: this.$themeLocaleConfig.ariaLabel || 'Select language',
           items: Object.keys(locales).map(path => {
             const locale = locales[path]
             const text = themeLocales[path] && themeLocales[path].label || locale.lang
@@ -92,6 +93,7 @@ export default {
           ? repo
           : `https://github.com/${repo}`
       }
+      return null
     },
 
     repoLabel () {
@@ -116,8 +118,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@import './styles/config.styl'
-
 .nav-links
   display inline-block
   a

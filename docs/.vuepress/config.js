@@ -1,18 +1,6 @@
+
+
 module.exports = {
-  head: [
-
-    ['link', {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
-    }],
-    ['link', {
-      rel: "stylesheet",
-      href: "https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
-    }],
-  ],
-
-
-
   themeConfig: {
     repo: 'DavidCouronne/latexconvertmd',
     docsDir: 'docs',
@@ -28,17 +16,17 @@ module.exports = {
     },
     sidebarDepth: 3,
     nav: [{
-        text: 'Accueil',
-        link: '/'
-      },
-      {
-        text: 'Guide',
-        link: '/guide/'
-      },
-      {
-        text: 'Katex',
-        link: '/katex/'
-      },
+      text: 'Accueil',
+      link: '/'
+    },
+    {
+      text: 'Guide',
+      link: '/guide/'
+    },
+    {
+      text: 'Katex',
+      link: '/katex/'
+    },
     ],
     sidebar: {
       '/docs/maths/sujets/2018-nvellecaledonie/': [
@@ -67,9 +55,9 @@ module.exports = {
   },
 
   markdown: {
-    lineNumbers: false,
-    config: md => {
-      md.use(require('./param-katex'));
+    extendMarkdown: md => {
+      md.set({ breaks: true })
+      md.use(require('markdown-it-katex-newcommand'))
     }
   }
 }
