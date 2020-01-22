@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuetify from 'vuetify'
+import Vue from "vue";
+import Vuetify from "vuetify";
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 export default {
   data: () => ({
     isVisible: false,
-    positiony: 0,
+    positiony: 0
   }),
   methods: {
     scrollFunction() {
@@ -42,10 +42,10 @@ export default {
     scrollToTop() {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-    },
+    }
   },
   created() {
-    window.addEventListener('scroll', this.scrollFunction);
-  },
+    window.addEventListener("scroll", this.scrollFunction);
+  }
 };
 </script>
